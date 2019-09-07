@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
+import 'package:mianatra_alemana/src/views/widgets/RoutesAndTabs.dart';
+import 'package:mianatra_alemana/src/data/dataCases.dart';
 
 class MianatraAlemanaHomePage extends StatefulWidget {
   MianatraAlemanaHomePage({Key key, this.title}) : super(key: key);
@@ -10,115 +11,77 @@ class MianatraAlemanaHomePage extends StatefulWidget {
 }
 
 class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
-  List _columnsTitle = ["Masculin", "Feminin", "Neutre", "Pluriel"];
-  var _contentListsNominatif = {
-          "definit": [
-              "der", "die", "das", "die"
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      
+      appBar: AppBar(
+        title: Text('Mianatra Alemana'),
+      ),
+      
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // A button that navigates to a named route that. The named route
+            // extracts the arguments by itself.
+             RiseButtonByCase("Nominatif", columnsTitle, contentListsNominatif, examplesOfNominatif, "/nominatif"),
+             RiseButtonByCase("Accusatif", columnsTitle, contentListsAccusatif, examplesOfAccusatif, "/accusatif"),
           ],
-          "indefinit": [
-              "ein", "eine", "ein", "-"
-          ],
-          "negation": [
-            "kein", "keine", "kein", "keine"
-          ]
-  };
-  var _contentListsAccusatif = {
-          "definit": [
-              "den", "die", "das", "die"
-          ],
-          "indefinit": [
-              "einen", "eine", "ein", "-"
-          ],
-          "negation": [
-            "keinen", "keine", "kein", "keine"
-          ]
-    };
+        ),
+      ),
+    );
+  }
+}
+
+class RiseButtonByCase extends StatelessWidget{
+  final String _title;
+  final List _columnsTitle;
+  final  _contentLists;
+  final List _examplesByCase;
+  final String routeName;
+
+  RiseButtonByCase(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-      child: DefaultTabController(
-          length: 3,
-          child: Scaffold(
-                  appBar: AppBar(
-                    bottom: TabBar(
-                      tabs: [
-                          Tab(icon: Icon(Icons.library_books),
-                          text: "Lesson"),
-                          Tab(icon: Icon(Icons.book),
-                          text: "Example"),
-                          Tab(icon: Icon(Icons.border_color),
-                          text: "Exercise"),
-                        ],
-                    ),
-                    title: Text(widget.title),
-                  ),
-                
-                  body: TabBarView(
-                        children: [
-                          Tab(
-                            child: SingleChildScrollView( 
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Icon(Icons.library_books),
-                                  this.createCases("I/ Ny \"Nominatif\"", _contentListsNominatif),
-                                ]
-                              ),   
-                            ),                         
-                          ),
-
-                          Tab(
-                            child: Column(
-                              children: <Widget>[
-                                  Icon(Icons.book),
-                                  TextSection("2/ Ohatra", "a) Du bist mein Freund."),
-                                  SimpleTextSection("b) Die Frau ist hiere."),
-                              ],
-                            ),
-                          ),
-                          Icon(Icons.border_color),
-                        ],
-                      ),
-                  ),
-          ),   
+    ExtractArgumentsScreenMianatraAlemana mianatraAlemana = new ExtractArgumentsScreenMianatraAlemana(_title, _columnsTitle, _contentLists, _examplesByCase, routeName);
+    
+    return RaisedButton(
+      child: Text(_title),
+      onPressed: () {
+        // When the user taps the button, navigate to the specific route
+        // and provide the arguments as part of the RouteSettings.
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => mianatraAlemana,
+          ),
+        );
+      },
     );
   }
+}
 
-  Widget createCases(String name, var contentLists){
-    MianatraAlemanaRowsAndColumns alemanaRows = new MianatraAlemanaRowsAndColumns();
-    if(name == "I/ Ny \"Nominatif\""){
-      Widget cases = Column(
-        children: [
-            SimpleTextSection(name),
-            TextSection("1/ Famaritana", "- Ny fameno rehefa ao arinanan'ny matoanteny \"sein\" dia ampiasaina ny \"Nominatif\""),
-            SimpleTextSection("- Ny teny rehetra rehefa entimilaza dia ampiasaina ny \"Nominatif\""),
+// A Widget that extracts the necessary arguments from the ModalRoute.
+class ExtractArgumentsScreenMianatraAlemana extends StatelessWidget {
+  final String routeName;
+  final String _title;
+  final List _columnsTitle;
+  final _contentLists;
+  final List _examplesByCase;
+  
+  ExtractArgumentsScreenMianatraAlemana(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
+  
+  @override
+  Widget build(BuildContext context) {
+    // Extract the arguments from the current ModalRoute settings and cast
+    TabBarMianatraAlemana tabMianatraAlemana = new TabBarMianatraAlemana(_title, _columnsTitle, _contentLists, _examplesByCase);
 
-            alemanaRows.twoColumns("2/ Famintinana", _columnsTitle),
-            alemanaRows.contentColumn(contentLists["definit"]),
-            alemanaRows.contentColumn(contentLists["indefinit"]),
-            alemanaRows.contentColumn(contentLists["negation"]),
-          ]
-        );
-
-        return cases;
-    } else {
-      Widget cases = Column(
-        children: [
-            SimpleTextSection(name),
-            TextSection("1/ Famaritana", "- Ny fameno rehetra ao arinanan'ny matoanteny ankoatran'ny \"sein\" dia ampiasaina ny \"Accusatif\""),
-            TextSection("2/ Ohatra", "a) Ich habe keine Freund."),
-            SimpleTextSection("b) Ich bringe einen Slushell."),
-            
-            alemanaRows.twoColumns("3/ Famintinana", _columnsTitle),
-            alemanaRows.contentColumn(contentLists["definit"]),
-            alemanaRows.contentColumn(contentLists["indefinit"]),
-            alemanaRows.contentColumn(contentLists["negation"]),
-          ]
-      );
-
-      return cases;
-    }
+    return Scaffold(
+      body: Center(
+        child: tabMianatraAlemana,
+      ),
+    );
   }
 }

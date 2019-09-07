@@ -6,11 +6,14 @@ class MianatraAlemanaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       title: 'Mianatra Alemana',
+      
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: MianatraAlemanaHomePage(title: 'Mianatra Alemana'),
+      
+      home: MianatraAlemanaHomePage(title: 'Mianatra Alemana'), 
     );
   }
 }
