@@ -37,24 +37,53 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
+      child: DefaultTabController(
+          length: 3,
           child: Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title),
-            ),
-          
-            body: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children:  [
-                      
-                      this.createCases("I/ Ny \"Nominatif\"", _contentListsNominatif),
-                      this.createCases("II/ Ny \"Accusatif\"", _contentListsAccusatif),
-                    ]
+                  appBar: AppBar(
+                    bottom: TabBar(
+                      tabs: [
+                          Tab(icon: Icon(Icons.directions_car),
+                          text: "Lesson"),
+                          Tab(icon: Icon(Icons.directions_transit),
+                          text: "Example"),
+                          Tab(icon: Icon(Icons.directions_bike),
+                          text: "Exercise"),
+                        ],
+                    ),
+                    title: Text(widget.title),
                   ),
-              ),
+                
+                  body: TabBarView(
+                        children: [
+                          Tab(
+                            child: SingleChildScrollView( 
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Icon(Icons.directions_car),
+                                  this.createCases("I/ Ny \"Nominatif\"", _contentListsNominatif),
+                                ]
+                              ),   
+                            ),                         
+                          ),
+
+                          Tab(
+                            child: Column(
+                              children: <Widget>[
+                                  Icon(Icons.directions_transit),
+                                  TextSection("2/ Ohatra", "a) Du bist mein Freund."),
+                                  SimpleTextSection("b) Die Frau ist hiere."),
+                              ],
+                            ),
+                          ),
+                          Icon(Icons.directions_bike),
+                        ],
+                      ),
+                  ),
           ),   
-        );
+    );
   }
 
   Widget createCases(String name, var contentLists){
@@ -65,10 +94,8 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
             SimpleTextSection(name),
             TextSection("1/ Famaritana", "- Ny fameno rehefa ao arinanan'ny matoanteny \"sein\" dia ampiasaina ny \"Nominatif\""),
             SimpleTextSection("- Ny teny rehetra rehefa entimilaza dia ampiasaina ny \"Nominatif\""),
-            TextSection("2/ Ohatra", "a) Du bist mein Freund."),
-            SimpleTextSection("b) Die Frau ist hiere."),
 
-            alemanaRows.twoColumns("3/ Famintinana", _columnsTitle),
+            alemanaRows.twoColumns("2/ Famintinana", _columnsTitle),
             alemanaRows.contentColumn(contentLists["definit"]),
             alemanaRows.contentColumn(contentLists["indefinit"]),
             alemanaRows.contentColumn(contentLists["negation"]),
