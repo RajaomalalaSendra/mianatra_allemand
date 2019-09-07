@@ -43,11 +43,11 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
                   appBar: AppBar(
                     bottom: TabBar(
                       tabs: [
-                          Tab(icon: Icon(Icons.directions_car),
+                          Tab(icon: Icon(Icons.library_books),
                           text: "Lesson"),
-                          Tab(icon: Icon(Icons.directions_transit),
+                          Tab(icon: Icon(Icons.book),
                           text: "Example"),
-                          Tab(icon: Icon(Icons.directions_bike),
+                          Tab(icon: Icon(Icons.border_color),
                           text: "Exercise"),
                         ],
                     ),
@@ -62,7 +62,7 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Icon(Icons.directions_car),
+                                  Icon(Icons.library_books),
                                   this.createCases("I/ Ny \"Nominatif\"", _contentListsNominatif),
                                 ]
                               ),   
@@ -72,13 +72,13 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
                           Tab(
                             child: Column(
                               children: <Widget>[
-                                  Icon(Icons.directions_transit),
+                                  Icon(Icons.book),
                                   TextSection("2/ Ohatra", "a) Du bist mein Freund."),
                                   SimpleTextSection("b) Die Frau ist hiere."),
                               ],
                             ),
                           ),
-                          Icon(Icons.directions_bike),
+                          Icon(Icons.border_color),
                         ],
                       ),
                   ),
