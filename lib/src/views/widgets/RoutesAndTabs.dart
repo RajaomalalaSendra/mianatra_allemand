@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
+import 'package:mianatra_alemana/src/views/widgets/Menu.dart';
+import 'package:mianatra_alemana/src/data/dataCases.dart';
 
 class TabBarMianatraAlemana extends StatelessWidget {
   final  String _title;
@@ -104,4 +106,170 @@ class TabBarMianatraAlemana extends StatelessWidget {
     );
   }
 
+}
+
+class TabBarHomeMenu  extends StatelessWidget {
+
+  Widget build(BuildContext context){
+    return   Scaffold(
+      body: 
+          Column(
+            children: <Widget>[
+              Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                  HomeMenuSizeBox("Grammaire"),
+                  HomeMenuSizeBox("Vocabulaire"),
+                  HomeMenuSizeBox("Jeux"),
+              ],
+          ), 
+        ],
+      ),
+    );
+  }
+}
+
+class TabBarMainMenu  extends StatelessWidget {
+
+  Widget build(BuildContext context){
+    return   Scaffold(
+      body: 
+          Column(
+            children: <Widget>[
+              Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                  MainMenuSizeBox("Cas"),
+                  MainMenuSizeBox("Conjugaison"),
+                  MainMenuSizeBox("Extc.."),
+              ],
+          ), 
+        ],
+      ),
+    );
+  }
+}
+
+class TabBarSecondMenu extends StatelessWidget {
+
+  Widget build(BuildContext context){
+    return   Scaffold(
+      body: 
+          Column(
+            children: <Widget>[
+              Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                  SecondMenuSizeBox("Nominatif", columnsTitle, contentListsNominatif, examplesOfNominatif),
+                  SecondMenuSizeBox("Accusatif", columnsTitle, contentListsAccusatif, examplesOfAccusatif),
+              ],
+          ), 
+        ],
+      ),
+    );
+  }
+}
+
+
+class HomeMenuSizeBox extends StatelessWidget{
+    final String _title;
+
+    HomeMenuSizeBox(this._title);
+
+
+    Widget build(BuildContext context){
+      
+      return OutlineButton(
+      child: Text(
+        _title,
+        style: TextStyle(color: Colors.lightGreen),
+      ),
+      
+      shape:  RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      borderSide: BorderSide(
+        color: Colors.lightGreen,
+      ),
+      
+      onPressed: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MainMenu(_title),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class MainMenuSizeBox extends StatelessWidget{
+    final String _title;
+
+    MainMenuSizeBox(this._title);
+
+
+    Widget build(BuildContext context){
+      
+      return OutlineButton(
+      child: Text(
+        _title,
+        style: TextStyle(color: Colors.lightGreen),
+      ),
+      
+      shape:  RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      borderSide: BorderSide(
+        color: Colors.lightGreen,
+      ),
+      
+      onPressed: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SecondMenu(_title),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class SecondMenuSizeBox extends StatelessWidget{
+    final String _title;
+    final List _columnsTitle;
+    final _contentLists;
+    final List _examplesByCase;
+
+    SecondMenuSizeBox(this._title, this._columnsTitle, this._contentLists, this._examplesByCase);
+
+
+    Widget build(BuildContext context){
+      TabBarMianatraAlemana tabBarMianatraAlemana = new TabBarMianatraAlemana(_title, _columnsTitle, _contentLists, _examplesByCase);
+
+      return OutlineButton(
+      child: Text(
+        _title,
+        style: TextStyle(color: Colors.lightGreen),
+      ),
+      
+      shape:  RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30.0),
+      ),
+      borderSide: BorderSide(
+        color: Colors.lightGreen,
+      ),
+      
+      onPressed: (){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => tabBarMianatraAlemana,
+          ),
+        );
+      },
+    );
+  }
 }
