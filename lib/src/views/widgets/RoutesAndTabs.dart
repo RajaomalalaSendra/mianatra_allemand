@@ -11,41 +11,21 @@ class TabBarMianatraAlemana extends StatelessWidget {
 
   TabBarMianatraAlemana(this._title, this._columnsTitle, this._contentLists, this._examplesByCase);
 
+
  @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-      child: DefaultTabController(
+    return   DefaultTabController(
           length: 3,
           child: Scaffold(
               appBar: this.appBarByCase(),
               body: TabBarView(
                         children: [
-                          Tab(
-                            child: SingleChildScrollView( 
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Icon(Icons.library_books),
-                                  this.createCases(_contentLists),
-                                ]
-                              ),   
-                            ),                         
-                          ),
-
-                          Tab(
-                            child: Column(
-                              children: <Widget>[
-                                  Icon(Icons.book),
-                                  this.createExamplesByCase(_examplesByCase),
-                              ],
-                            ),
-                          ),
-                          Icon(Icons.border_color),
+                          this.createTab(this.createCases(_contentLists)),
+                          this.createTab(this.createExamplesByCase(_examplesByCase)),
+                          this.createTab(TextInputByCase()),
                         ],
                       ),
                   ),
-          ),
     );
   }
 
@@ -61,9 +41,15 @@ class TabBarMianatraAlemana extends StatelessWidget {
             alemanaRows.contentColumn(contentLists["definit"]),
             alemanaRows.contentColumn(contentLists["indefinit"]),
             alemanaRows.contentColumn(contentLists["negation"]),
-          ]
-        );
+           
+           
+            TextSection("3/ Nominatif miaraka amin'ny adjectif", "-  Ny adjectif ihany koa rehefa eo alohan'ny teny \nanankiray dia manaraka ny genre sy ny isany"),
+            SimpleTextSection("Sahala amin'izao no fampiasana azy:\n article + adjectif miafara amin'ilay genre ny article + anarana iombonana."),
 
+            alemanaRows.twoColumns("2/ Teny Miafara ao anatin'ny adjectif", _columnsTitle),
+            alemanaRows.contentColumn(["r na er", "e", "es", "e"]),
+          ]
+      );
         return cases;
     } else {
       Widget cases = Column(
@@ -97,15 +83,54 @@ class TabBarMianatraAlemana extends StatelessWidget {
               );
   }
 
-  Widget createExamplesByCase(var examplesByCase){
+  Widget createExamplesByCase(List examplesByCase){
+    /// create example by case
+    /// And you can check the documentation here
+  
     return Column(
         children:[
-            TextSection("Ohatra", examplesByCase[0]),
+            TextSection("Ohatra Voalohany", examplesByCase[0]),
+            SimpleTextSection(">> " + examplesByCase[8]),
+
             SimpleTextSection(examplesByCase[1]),
-        ]
+            SimpleTextSection(">> " + examplesByCase[9]),
+            
+            SimpleTextSection(examplesByCase[2]),
+            SimpleTextSection(">> " + examplesByCase[10]),
+
+            SimpleTextSection(examplesByCase[3]),
+            SimpleTextSection(">> " + examplesByCase[11]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase[4]),
+            SimpleTextSection(">> " + examplesByCase[12]),
+
+            SimpleTextSection(examplesByCase[5]),
+            SimpleTextSection(">> " + examplesByCase[13]),
+            
+            SimpleTextSection(examplesByCase[6]),
+            SimpleTextSection(">> " + examplesByCase[14]),
+
+            SimpleTextSection(examplesByCase[7]),
+            SimpleTextSection(">> " + examplesByCase[15]),
+        ],
     );
   }
 
+  Widget createTab(Widget content){
+      return Tab(
+                child: SingleChildScrollView(
+                  child: Container(
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                          content,
+                      ],
+                    ),
+                  ),
+                ),
+              );
+  }
 }
 
 class TabBarHomeMenu  extends StatelessWidget {
@@ -126,7 +151,7 @@ class TabBarHomeMenu  extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                   HomeMenuSizeBoxDialogues("Dialogues"),
-                  HomeMenuSizeBoxDialogues("Dialogu"),
+                  HomeMenuSizeBoxDialogues("Dialogues II"),
               ],
           ),
         ],
@@ -160,6 +185,35 @@ class TabBarMainMenuGrammar  extends StatelessWidget {
   }
 }
 
+class TabBarMainMenuVocabularies extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: 
+          Column(
+            children: <Widget>[
+             this.getRow("Das Brot", "Ny mofodopaina"),
+             this.getRow("Das Obst", "Ny voakanzo"),
+             this.getRow("Das Gemuse", "Ny legioma"),
+             this.getRow("Die Apfel", "Ny poma"),
+             this.getRow("Der Druker", "Ny masina fanaovana pirinty"),
+        ],
+      ),
+    );
+  }
+
+
+  getRow(String sentenceOne, String sentenceTwo){
+    return Row(
+              children: [
+                  Text(sentenceOne),
+                  Spacer(flex: 1,),
+                  Text(sentenceTwo),
+              ],
+          );
+  }
+}
+
 class TabBarSecondMenuCases extends StatelessWidget {  
 
   Widget build(BuildContext context){
@@ -178,4 +232,38 @@ class TabBarSecondMenuCases extends StatelessWidget {
       ),
     );
   }
+}
+
+class TextInputByCase extends StatefulWidget {
+  @override
+  CreateExercicesByCase createState() => new CreateExercicesByCase();
+}
+
+class CreateExercicesByCase extends State<TextInputByCase>{
+
+    String result = "";
+
+    @override
+    Widget build(BuildContext context){
+      return Column(
+              children: <Widget>[
+                    Text("Das ist  "),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: "der/die/das",
+                      ),
+                      maxLength: 3,
+                      //onChanged is called whenever we add or delete something on Text Field
+                      onSubmitted: (String str){
+                        setState((){
+                          result = str;
+                        });
+                      }
+                    ),
+                    Text(" neue Lehrerin."),
+                  //displaying input text
+                  Text(result),
+                ]
+              );
+    }
 }

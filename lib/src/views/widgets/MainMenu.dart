@@ -17,3 +17,20 @@ class MainMenuGrammar extends StatelessWidget{
     );
   }
 }
+
+class MainMenuVocabularies extends StatelessWidget{
+  final String _title;
+
+  MainMenuVocabularies(this._title);
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      
+      appBar: AppBar(
+        title: Text(_title),
+      ),
+      body: TabBarMainMenuVocabularies(),
+    );
+  }
+}

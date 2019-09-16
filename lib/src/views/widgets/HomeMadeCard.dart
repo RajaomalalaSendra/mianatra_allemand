@@ -12,10 +12,15 @@ class HomeMadeCard extends StatelessWidget {
     return Container(
       //adding bottom padding on card
       padding: EdgeInsets.only(bottom: 20.0),
-      child: Card(
+      child:  Card(
+        shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                      side: BorderSide(color: Colors.blue, style: BorderStyle.values[1]),
+                  ),
+        borderOnForeground: true,
         child: Container(
           //adding padding inside card
-          padding: EdgeInsets.all(15.0),
+          padding: EdgeInsets.all(17.0),
           child: Column(
           children: <Widget>[
               // Text("I love Flutter"),
@@ -47,11 +52,11 @@ class HomeMadeOutLineButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30.0),
                   ),
           borderSide: BorderSide(
-                    color: Colors.lightGreen,
+                    color: Colors.blue,
                   ),
           child: Text(
             _title,
-            style: TextStyle(color: Colors.lightGreen),
+            style: TextStyle(color: Colors.blue),
           ),
           onPressed: (){
               Navigator.push(
@@ -78,11 +83,11 @@ class HomeMadeOutLineButtonNothing extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30.0),
                   ),
           borderSide: BorderSide(
-                    color: Colors.lightGreen,
+                    color: Colors.blue,
                   ),
           child: Text(
             _title,
-            style: TextStyle(color: Colors.lightGreen),
+            style: TextStyle(color: Colors.blue),
           ),
           onPressed: (){}
         );
@@ -102,7 +107,7 @@ class HomeMadeCardTwo extends StatelessWidget {
     return HomeMadeCard(
         title: Text(
           _text,
-          style: TextStyle(color: Colors.lightGreen),
+          style: TextStyle(color: Colors.blue),
         ),
         button: HomeMadeOutLineButton(_title, _widget),
       );
@@ -121,7 +126,7 @@ class HomeMadeCardTwoNothing extends StatelessWidget {
     return HomeMadeCard(
         title: Text(
           _text,
-          style: TextStyle(color: Colors.lightGreen),
+          style: TextStyle(color: Colors.blue),
         ),
         button: HomeMadeOutLineButtonNothing(_title),
       );

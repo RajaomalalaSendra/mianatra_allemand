@@ -20,7 +20,7 @@ class HomeMenuSizeBoxVocabularies extends StatelessWidget{
     HomeMenuSizeBoxVocabularies(this._title);
 
     Widget build(BuildContext context){
-      return  HomeMadeCardTwoNothing("Learn Vocabularies \n German", _title);
+      return  HomeMadeCardTwo("Learn Vocabularies \n German", _title, MainMenuVocabularies(_title));
     }
 }
 
@@ -81,5 +81,6 @@ class SecondMenuSizeBoxCases extends StatelessWidget{
       for (var i = 0; i < _columnsTitle.length; i++){
         return HomeMadeCardTwo("Apprendre le \n cas " + _title,_title, tabBarMianatraAlemana);
       }
+      return Text("OK");
   }
 }

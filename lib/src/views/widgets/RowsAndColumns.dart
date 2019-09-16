@@ -33,14 +33,14 @@ class MianatraAlemanaRowsAndColumns {
       children: <Widget>[
         Container(
           decoration: BoxDecoration(
-            color: Colors.lightGreen,
+            color: Colors.blue,
           ),
           padding: const EdgeInsets.fromLTRB(_padding, 32.0, _padding, 4.0),
           child: Text(title),
         ),
         Container(
           decoration: BoxDecoration(
-            color: Colors.greenAccent,
+            color: Colors.white70,
           ),
           padding: const EdgeInsets.fromLTRB(_padding, 10.0, _padding, _padding),
           child: this.fourRows(texts[0], texts[1], texts[2], texts[3]),
@@ -96,7 +96,7 @@ class TextSection extends StatelessWidget {
         
         Container(
           decoration: BoxDecoration(
-            color: Colors.lightGreen,
+            color: Colors.blue,
           ),
           padding: const EdgeInsets.fromLTRB(_padding, 32.0, _padding, 4.0),
           child: Text(_title),
@@ -126,7 +126,7 @@ class SimpleTextSection extends StatelessWidget {
 
     if (_body.length < 20){
       getDecoration = BoxDecoration(
-            color: Colors.green,
+            color: Colors.white70,
       );
     } else {
       getDecoration = BoxDecoration(

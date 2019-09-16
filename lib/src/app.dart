@@ -10,7 +10,7 @@ class MianatraAlemanaApp extends StatelessWidget {
       title: 'Mianatra Alemana',
       
       theme: ThemeData(
-        primarySwatch: Colors.lightGreen,
+        primarySwatch: Colors.blue,
       ),
       
       home: MianatraAlemanaHomePage(title: 'Mianatra Alemana'), 
