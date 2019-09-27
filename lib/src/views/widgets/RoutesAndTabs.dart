@@ -186,31 +186,39 @@ class TabBarMainMenuGrammar  extends StatelessWidget {
 }
 
 class TabBarMainMenuVocabularies extends StatelessWidget {
+  final List<String> textOne = ['Das Obst', 'Das Gemuse', 'Die Apfel', 'Der Druker', 'Die Kulie'];
+  final List<String> textTwo = ['Ny voankazo', 'Ny legioma', 'Ny poma', 'Ny imprimante', 'Ny penina'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: 
-          Column(
-            children: <Widget>[
-             this.getRow("Das Brot", "Ny mofodopaina"),
-             this.getRow("Das Obst", "Ny voakanzo"),
-             this.getRow("Das Gemuse", "Ny legioma"),
-             this.getRow("Die Apfel", "Ny poma"),
-             this.getRow("Der Druker", "Ny masina fanaovana pirinty"),
-        ],
-      ),
+        body: this.getColumnWidgets(textOne, textTwo),
     );
   }
 
+  Widget getRow(String wordOne, String wordTwo){
+    return Container(
+            padding: EdgeInsets.all(10.0),
+            child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(right: wordOne.length.toDouble() + 100),
+                    child: Text(wordOne),
+                  ),
+                  Text(wordTwo),
+                ],
+              ),
+            );
+  }
 
-  getRow(String sentenceOne, String sentenceTwo){
-    return Row(
-              children: [
-                  Text(sentenceOne),
-                  Spacer(flex: 1,),
-                  Text(sentenceTwo),
-              ],
-          );
+  Widget getColumnWidgets(List<String> strings, List<String> stringsTwo){
+    
+    List<Widget> list = new List<Widget>();
+    
+    for(var i = 0; i < strings.length; i++){
+        list.add(this.getRow(strings[i], stringsTwo[i]));
+    }
+    return Column(children: list);
   }
 }
 
@@ -245,25 +253,32 @@ class CreateExercicesByCase extends State<TextInputByCase>{
 
     @override
     Widget build(BuildContext context){
-      return Column(
+      return Row(
+        mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                    Text("Das ist  "),
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: "der/die/das",
-                      ),
-                      maxLength: 3,
-                      //onChanged is called whenever we add or delete something on Text Field
-                      onSubmitted: (String str){
-                        setState((){
-                          result = str;
-                        });
-                      }
-                    ),
-                    Text(" neue Lehrerin."),
-                  //displaying input text
-                  Text(result),
-                ]
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.5),
+                  child: Wrap(alignment: WrapAlignment.end, children: [
+                          Text("Das ist  "),
+                          TextField(
+                            decoration: InputDecoration(
+                              hintText: "der/die/das",
+                            ),
+                            maxLength: 3,
+                            //onChanged is called whenever we add or delete something on Text Field
+                            onSubmitted: (String str){
+                              setState((){
+                                result = str;
+                              });
+                            }
+                          ),
+                          Text(" neue Lehrerin."),
+                          //displaying input text
+                          Text(result),
+                  ]),
+                  ),
+                ],
               );
     }
 }

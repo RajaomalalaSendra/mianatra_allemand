@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/RoutesAndTabs.dart';
+import 'package:mianatra_alemana/src/views/widgets/VocabulariesPage.dart';
 
 class MainMenuGrammar extends StatelessWidget{
   final String _title;
@@ -30,7 +31,7 @@ class MainMenuVocabularies extends StatelessWidget{
       appBar: AppBar(
         title: Text(_title),
       ),
-      body: TabBarMainMenuVocabularies(),
+      body: MainVocabulariesPage(),
     );
   }
 }
