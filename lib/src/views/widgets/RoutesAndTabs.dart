@@ -244,41 +244,71 @@ class TabBarSecondMenuCases extends StatelessWidget {
 
 class TextInputByCase extends StatefulWidget {
   @override
-  CreateExercicesByCase createState() => new CreateExercicesByCase();
+  _CreateExercicesByCase createState() => new _CreateExercicesByCase();
 }
 
-class CreateExercicesByCase extends State<TextInputByCase>{
+class _CreateExercicesByCase extends State<TextInputByCase>{
 
     String result = "";
 
     @override
     Widget build(BuildContext context){
+      return Column (
+            children: <Widget>[
+              rowConstrainedBoxByCase("Das ist", "Frau", "die"),
+              rowConstrainedBoxByCase("Du bist ", "Lehrer", "der"),
+              rowConstrainedBoxByCase("Sie sind", "Studenten", "die"),
+            ],
+      );
+    }
+
+    Widget rowConstrainedBoxByCase(String textOne, String textTwo, String theanswer){
       return Row(
-        mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.5),
-                  child: Wrap(alignment: WrapAlignment.end, children: [
-                          Text("Das ist  "),
-                          TextField(
-                            decoration: InputDecoration(
-                              hintText: "der/die/das",
-                            ),
-                            maxLength: 3,
-                            //onChanged is called whenever we add or delete something on Text Field
-                            onSubmitted: (String str){
-                              setState((){
-                                result = str;
-                              });
-                            }
-                          ),
-                          Text(" neue Lehrerin."),
-                          //displaying input text
-                          Text(result),
-                  ]),
-                  ),
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget>[
+                  constrainedBoxByCase(textOne, textTwo, theanswer),  
                 ],
               );
+    }
+    
+    Widget constrainedBoxByCase(String textOne, String textTwo, String theanswer){
+      return ConstrainedBox(
+                  constraints: BoxConstraints(
+                  maxWidth: MediaQuery.of(context).size.width * 0.7),
+                  child:  Center(
+                    child: Wrap(
+                      alignment: WrapAlignment.end, children: [
+                      Text(textOne),
+                      TextField(
+                          decoration: InputDecoration(
+                           hintText: "der/die/das",
+                        ),
+                        cursorWidth: 1.5,
+                        maxLength: 3,
+                        scrollPadding: EdgeInsets.all(10),
+                        //onChanged is called whenever we add or delete something on Text Field
+                        onSubmitted: (String str){
+                          setState((){
+                            result = str;
+                          });
+                        }
+                      ),
+                    Text(textTwo),
+                    //displaying input text
+                    computeComparisonAnswer(result, theanswer),
+              ]),
+            ),      
+        );
+    }
+
+    Widget computeComparisonAnswer(String answer, String answerTwo){
+      Widget comparisonAnswer = Text("Default");
+      
+      if(answer == answerTwo){
+        comparisonAnswer = Text("True");
+      } else {
+        comparisonAnswer = Text("False");
+      }
+      return comparisonAnswer;
     }
 }
