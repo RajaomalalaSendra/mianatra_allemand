@@ -16,6 +16,7 @@ class ContentGrammar extends StatelessWidget{
     ExtractArgumentsScreenMianatraAlemana mianatraAlemanaNominatif = new ExtractArgumentsScreenMianatraAlemana(_title[0], _columnsTitle, _contentLists[0], _examplesByCase[0], routeName[0]);
     ExtractArgumentsScreenMianatraAlemana mianatraAlemanaAccusatif = new ExtractArgumentsScreenMianatraAlemana(_title[1], _columnsTitle, _contentLists[1], _examplesByCase[1], routeName[1]);
     ExtractArgumentsScreenMianatraAlemana mianatraAlemanaDatif = new ExtractArgumentsScreenMianatraAlemana(_title[2], _columnsTitle, _contentLists[2], _examplesByCase[2], routeName[2]);
+    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaGenetif = new ExtractArgumentsScreenMianatraAlemana(_title[3], _columnsTitle, _contentLists[3], _examplesByCase[3], routeName[3]);
 
     return Column(
       children: <Widget>[
@@ -61,6 +62,21 @@ class ContentGrammar extends StatelessWidget{
                   );
               },
               child: Text("Datif"),
+            )
+          ],
+        ),
+        Row(
+            children: <Widget>[
+            FlatButton(
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => mianatraAlemanaGenetif,
+                    ),
+                  );
+              },
+              child: Text("Genetif"),
             )
           ],
         ),

@@ -1,5 +1,5 @@
 var columnsTitle = ["Masculin", "Feminin", "Neutre", "Pluriel"];
-var titlesCases = ["Nominatif", "Accusatif", "Datif"];
+var titlesCases = ["Nominatif", "Accusatif", "Datif", "Genetif"];
 
 var contentLists = [
   {
@@ -14,7 +14,11 @@ var contentLists = [
   "definit": ["den", "die", "das", "die"],
   "indefinit": ["einen", "eine", "ein", "-"],
   "negation": ["keinen", "keine", "kein", "keine"]
-} 
+},{
+  "definit": ["den", "die", "das", "die"],
+  "indefinit": ["einen", "eine", "ein", "-"],
+  "negation": ["keinen", "keine", "kein", "keine"]
+}  
 ];
 
 List examplesByCases = [
@@ -37,6 +41,24 @@ List examplesByCases = [
   "Eto ny mpampianatra vehivavy vaovao androany.",
   "Tsara be ny atody."
 ], [
+  "a) Ich habe keine Freunde.",
+  "b) Ich bringe einen Slushell.",
+  "d) Mein Vater isst ein Brot.",
+  "e) Seine Mutter nimmt ein Zimmer",
+  "a) Maria trinke einen heissen Kaffee",
+  "b) Ich habe einen neuen Fahrrad.",
+  "d) Die Studenten brauchen einen shnellen Druker.",
+  "e) Du isst einen Ei.",
+
+  "Tsy  manana namana aho.",
+  "Mitondra ny fanalahidy aho.",
+  "Mihinana mofo ny dadako.",
+  "Namandrika efitra iray ny reniny.",
+  "Misotro kafe mafana i Maria.",
+  "Manana bisikileta vaovao aho.",
+  "Maniry ny hahavita ny imprimante telo ny mpianatra.",
+  "Mihinana atody ianao."
+  ], [
   "a) Ich habe keine Freunde.",
   "b) Ich bringe einen Slushell.",
   "d) Mein Vater isst ein Brot.",

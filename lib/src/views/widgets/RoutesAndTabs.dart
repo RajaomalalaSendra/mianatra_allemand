@@ -64,6 +64,19 @@ class TabBarMianatraAlemana extends StatelessWidget {
       );
 
       return cases;
+    } else if(_title == "Datif") {
+      Widget cases = Column(
+        children: [
+            TextSection("1/ Famaritana", "- Ny fameno rehetra ao arinanan'ny matoanteny ankoatran'ny \"sein\" dia ampiasaina ny \"Accusatif\""),
+            
+            alemanaRows.twoColumns("2/ Famintinana", _columnsTitle),
+            alemanaRows.contentColumn(contentLists["definit"]),
+            alemanaRows.contentColumn(contentLists["indefinit"]),
+            alemanaRows.contentColumn(contentLists["negation"]),
+          ],
+      );
+
+      return cases;
     } else {
       Widget cases = Column(
         children: [
