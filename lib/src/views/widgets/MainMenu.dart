@@ -42,7 +42,7 @@ class MainMenu extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return   DefaultTabController(
-            length: 3,
+            length: 4,
             child: Scaffold(
                 appBar: this.appBarByTitle(),
                 body: TabBarView(
@@ -50,6 +50,7 @@ class MainMenu extends StatelessWidget{
                             this.createTab(ContentGrammar(titlesCases, columnsTitle, contentLists, examplesByCases, titlesCases)),
                             this.createTab(ContentVocabularies()),
                             this.createTab(ContentConjugaison()),
+                            this.createTab(ContentDialogues()),
                           ],
                         ),
                     ),
@@ -67,6 +68,8 @@ class MainMenu extends StatelessWidget{
                       text: "Voambolana"),
                       Tab(icon: Icon(Icons.border_color),
                       text: "Conjugaison"),
+                      Tab(icon: Icon(Icons.ac_unit),
+                      text: "Dialogues"),
                     ],
                 ),
               );

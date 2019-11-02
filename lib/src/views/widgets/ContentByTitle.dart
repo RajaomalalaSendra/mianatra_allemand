@@ -115,3 +115,31 @@ class ContentConjugaison extends StatelessWidget{
     );
   }
 }
+
+class ContentDialogues extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Text("Test"),
+            Text("Dialogue One")
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Text("Test"),
+            Text("Dialogue Two")
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            Text("Test"),
+            Text("Dialogue Three")
+          ],
+        ),
+      ],
+    );
+  }
+}
