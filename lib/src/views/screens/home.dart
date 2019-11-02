@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/views/widgets/RoutesAndTabs.dart';
+import 'package:mianatra_alemana/src/views/widgets/MainMenu.dart';
 
 class MianatraAlemanaHomePage extends StatefulWidget {
   MianatraAlemanaHomePage({Key key, this.title}) : super(key: key);
@@ -18,7 +18,7 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
         title: Text('Mianatra Alemana'),
       ),
       
-      body: TabBarHomeMenu(),
+      body: MainMenu(),
     );
   }
 }

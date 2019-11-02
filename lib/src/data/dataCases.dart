@@ -1,18 +1,19 @@
 var columnsTitle = ["Masculin", "Feminin", "Neutre", "Pluriel"];
+var titlesCases = ["Nominatif", "Accusatif"];
 
-var contentListsNominatif = {
+var contentLists = [
+  {
   "definit": ["der", "die", "das", "die"],
   "indefinit": ["ein", "eine", "ein", "-"],
   "negation": ["kein", "keine", "kein", "keine"]
-};
-
-var contentListsAccusatif = {
+}, {
   "definit": ["den", "die", "das", "die"],
   "indefinit": ["einen", "eine", "ein", "-"],
   "negation": ["keinen", "keine", "kein", "keine"]
-};
+}];
 
-List examplesOfNominatif = [
+List examplesByCases = [
+  [
   "a) Ich bin die Bruder von Ndria.",
   "b) Meine Mutter ist hier.",
   "d) Dein Frau ist here.",
@@ -30,9 +31,7 @@ List examplesOfNominatif = [
   "Ny vehivavy lehibe dia manana anadahy 3.",
   "Eto ny mpampianatra vehivavy vaovao androany.",
   "Tsara be ny atody."
-];
-
-List examplesOfAccusatif = [
+], [
   "a) Ich habe keine Freunde.",
   "b) Ich bringe einen Slushell.",
   "d) Mein Vater isst ein Brot.",
@@ -50,4 +49,5 @@ List examplesOfAccusatif = [
   "Manana bisikileta vaovao aho.",
   "Maniry ny hahavita ny imprimante telo ny mpianatra.",
   "Mihinana atody ianao."
+  ]
 ];

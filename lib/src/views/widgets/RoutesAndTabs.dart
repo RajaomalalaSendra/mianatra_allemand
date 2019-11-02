@@ -69,7 +69,8 @@ class TabBarMianatraAlemana extends StatelessWidget {
 
   Widget appBarByCase(){
     return  AppBar(
-                bottom: TabBar(
+                title: TabBar(
+                  isScrollable: true,
                   tabs: [
                       Tab(icon: Icon(Icons.library_books),
                       text: "Lesona"),
@@ -79,7 +80,6 @@ class TabBarMianatraAlemana extends StatelessWidget {
                       text: "Fampiharana"),
                     ],
                 ),
-                title: Text(_title),
               );
   }
 
@@ -117,8 +117,7 @@ class TabBarMianatraAlemana extends StatelessWidget {
   }
 
   Widget createTab(Widget content){
-      return Tab(
-                child: SingleChildScrollView(
+      return SingleChildScrollView(
                   child: Container(
                     child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -128,7 +127,6 @@ class TabBarMianatraAlemana extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
               );
   }
 }
@@ -232,8 +230,8 @@ class TabBarSecondMenuCases extends StatelessWidget {
               Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                  SecondMenuSizeBoxCases("Nominatif", columnsTitle, contentListsNominatif, examplesOfNominatif),
-                  SecondMenuSizeBoxCases("Accusatif", columnsTitle, contentListsAccusatif, examplesOfAccusatif),
+                  SecondMenuSizeBoxCases("Nominatif", columnsTitle, contentLists[0], examplesByCases[0]),
+                  SecondMenuSizeBoxCases("Accusatif", columnsTitle, contentLists[1], examplesByCases[1]),
               ],
           ), 
         ],
@@ -255,7 +253,7 @@ class _CreateExercicesByCase extends State<TextInputByCase>{
     Widget build(BuildContext context){
       return Column (
             children: <Widget>[
-              rowConstrainedBoxByCase("Das ist", "Frau", "die"),
+              rowConstrainedBoxByCase("Das ist die frau is nisc", "Frau ist Frau,", "die"),
               rowConstrainedBoxByCase("Du bist ", "Lehrer", "der"),
               rowConstrainedBoxByCase("Sie sind", "Studenten", "die"),
             ],
@@ -274,30 +272,45 @@ class _CreateExercicesByCase extends State<TextInputByCase>{
     Widget constrainedBoxByCase(String textOne, String textTwo, String theanswer){
       return ConstrainedBox(
                   constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width * 0.7),
-                  child:  Center(
-                    child: Wrap(
-                      alignment: WrapAlignment.end, children: [
-                      Text(textOne),
-                      TextField(
-                          decoration: InputDecoration(
-                           hintText: "der/die/das",
-                        ),
-                        cursorWidth: 1.5,
-                        maxLength: 3,
-                        scrollPadding: EdgeInsets.all(10),
-                        //onChanged is called whenever we add or delete something on Text Field
-                        onSubmitted: (String str){
-                          setState((){
-                            result = str;
-                          });
-                        }
+                  maxWidth: MediaQuery.of(context).size.width),
+                  child:  Container(
+                    padding: EdgeInsets.all(16.0),
+                    child: SingleChildScrollView(
+                      child: Row( 
+                      children: <Widget>[
+                          Flexible(
+                            child: Text(
+                              textOne,
+                              overflow: TextOverflow.clip,
+                            ),
+                          ),
+                          Flexible(
+                            child: Container(
+                                width: 100.0,
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    hintText: "der/die/das",
+                                  ),
+                                  cursorWidth: 1.5,
+                                  maxLength: 3,
+                                  scrollPadding: EdgeInsets.all(10),
+                                  //onChanged is called whenever we add or delete something on Text Field
+                                  onSubmitted: (String str){
+                                    setState((){
+                                      result = str;
+                                    });
+                                  }
+                                ),
+                              ),
+                          ),
+                         Flexible(
+                            child: Text(textTwo),
+                          ),
+                          //displaying input text
+                          computeComparisonAnswer(result, theanswer),                      
+                      ]),
                       ),
-                    Text(textTwo),
-                    //displaying input text
-                    computeComparisonAnswer(result, theanswer),
-              ]),
-            ),      
+                  ),
         );
     }
 

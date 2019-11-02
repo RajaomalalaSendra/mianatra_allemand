@@ -9,7 +9,7 @@ class CaseTabBarMenu extends StatelessWidget{
   final String routeName;
 
   CaseTabBarMenu(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
-
+  
   @override
   Widget build(BuildContext context) {
     ExtractArgumentsScreenMianatraAlemana mianatraAlemana = new ExtractArgumentsScreenMianatraAlemana(_title, _columnsTitle, _contentLists, _examplesByCase, routeName);
