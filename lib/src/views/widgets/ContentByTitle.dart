@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/Menu.dart';
+import 'package:mianatra_alemana/src/data/dataVocabularies.dart';
 
 class ContentGrammar extends StatelessWidget{
 
@@ -86,6 +87,7 @@ class ContentGrammar extends StatelessWidget{
 }
 
 class ContentVocabularies extends StatelessWidget{
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -96,12 +98,7 @@ class ContentVocabularies extends StatelessWidget{
               prefixIcon: Icon(Icons.search),
           ),
         ),
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Test Threee")
-          ],
-        ),
+        contentDetailVocabulariesByLanguage(malagasyToDeutch),
         Row(
           children: <Widget>[
             Text("Test"),
@@ -111,6 +108,20 @@ class ContentVocabularies extends StatelessWidget{
       ],
     );
   }
+
+  Widget contentDetailVocabulariesByLanguage(Map languageVocabularies){
+    List<Widget> listWidgetsVocabularies = new List<Widget>();
+    List<String> firstListLanguageVocabularies = languageVocabularies.keys.toList();
+    List<String> secondListLanguageVocabularies = languageVocabularies.values.toList();
+  
+    for (var i = 0; i < firstListLanguageVocabularies.length; i++) {
+        listWidgetsVocabularies.add(
+          Text(firstListLanguageVocabularies[i] + "  =>> " + secondListLanguageVocabularies[i])
+        );
+    }
+    return Column(children: listWidgetsVocabularies);
+  }
+
 }
 
 

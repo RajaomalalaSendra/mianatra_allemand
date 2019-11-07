@@ -129,37 +129,37 @@ class TabBarMianatraAlemana extends StatelessWidget {
     } else if(_title == "Accusatif"){
       column = Column(
             children:[
-                TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
+              TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Accusatif"]["one"][0]),
+              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Accusatif"]["one"][0]),
+              contentDetailExampleCases(examplesByCase["Deutch"]["Accusatif"]["one"], examplesByCase["Malagasy"]["Accusatif"]["one"]),
 
-            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
+              TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Accusatif"]["two"][0]),
+              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Accusatif"]["two"][0]),
+              contentDetailExampleCases(examplesByCase["Deutch"]["Accusatif"]["two"], examplesByCase["Malagasy"]["Accusatif"]["two"]),
             ],
         );
     } else if(_title == "Datif"){
       column = Column(
         children:[
-            TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
+              TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Datif"]["one"][0]),
+              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Datif"]["one"][0]),
+              contentDetailExampleCases(examplesByCase["Deutch"]["Datif"]["one"], examplesByCase["Malagasy"]["Datif"]["one"]),
 
-            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
+              TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Datif"]["two"][0]),
+              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Datif"]["two"][0]),
+              contentDetailExampleCases(examplesByCase["Deutch"]["Datif"]["two"], examplesByCase["Malagasy"]["Datif"]["two"]),
         ],
     );
     } else {
       column = Column(
         children:[
-            TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
+              TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Genetif"]["one"][0]),
+              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Genetif"]["one"][0]),
+              contentDetailExampleCases(examplesByCase["Deutch"]["Genetif"]["one"], examplesByCase["Malagasy"]["Genetif"]["one"]),
 
-            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
+              TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Genetif"]["two"][0]),
+              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Genetif"]["two"][0]),
+              contentDetailExampleCases(examplesByCase["Deutch"]["Genetif"]["two"], examplesByCase["Malagasy"]["Genetif"]["two"]),
         ],
     );
     }
@@ -167,22 +167,15 @@ class TabBarMianatraAlemana extends StatelessWidget {
   }
 
   Widget contentDetailExampleCases(List<String> examplesDeutch, List<String> examplesMalagasy){
-    Widget contentExample = Column();
-    Widget contentAllExamples = Column();
+    List<Widget> listWidgetsExamples = new List<Widget>();
     for (var i = 0; i < examplesMalagasy.length; i++) {
       if(i != 0){
-        contentAllExamples = Column( children: <Widget>[
-          SimpleTextSection(examplesDeutch[i]),
-          SimpleTextSection(">> " + examplesMalagasy[i])
-        ]);
+        listWidgetsExamples.add(
+          SimpleTextSection(examplesDeutch[i] + "\n\n>> " + examplesMalagasy[i])
+        );
       }
     }
-    contentExample = Column(
-          children: <Widget>[
-           contentAllExamples,
-          ],
-      );
-    return contentExample;
+    return Column(children: listWidgetsExamples);
   }
 
   Widget createTab(Widget content){
