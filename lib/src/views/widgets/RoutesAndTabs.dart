@@ -7,7 +7,7 @@ class TabBarMianatraAlemana extends StatelessWidget {
   final  String _title;
   final List _columnsTitle;
   final _contentLists;
-  final List _examplesByCase;
+  final Map _examplesByCase;
 
   TabBarMianatraAlemana(this._title, this._columnsTitle, this._contentLists, this._examplesByCase);
 
@@ -22,7 +22,7 @@ class TabBarMianatraAlemana extends StatelessWidget {
                         children: [
                           this.createTab(this.createCases(_contentLists)),
                           this.createTab(this.createExamplesByCase(_examplesByCase)),
-                          this.createTab(TextInputByCase()),
+                          this.createTab(TextInputByCase(_title)),
                         ],
                       ),
                   ),
@@ -109,37 +109,80 @@ class TabBarMianatraAlemana extends StatelessWidget {
               );
   }
 
-  Widget createExamplesByCase(List examplesByCase){
+  Widget createExamplesByCase(Map examplesByCase){
     /// create example by case
     /// And you can check the documentation here
-  
-    return Column(
+    Widget column = Column(); 
+
+    if(_title == "Nominatif"){
+      column = Column(
         children:[
-            TextSection("Ohatra Voalohany", examplesByCase[0]),
-            SimpleTextSection(">> " + examplesByCase[8]),
+            TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
 
-            SimpleTextSection(examplesByCase[1]),
-            SimpleTextSection(">> " + examplesByCase[9]),
-            
-            SimpleTextSection(examplesByCase[2]),
-            SimpleTextSection(">> " + examplesByCase[10]),
-
-            SimpleTextSection(examplesByCase[3]),
-            SimpleTextSection(">> " + examplesByCase[11]),
-
-            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase[4]),
-            SimpleTextSection(">> " + examplesByCase[12]),
-
-            SimpleTextSection(examplesByCase[5]),
-            SimpleTextSection(">> " + examplesByCase[13]),
-            
-            SimpleTextSection(examplesByCase[6]),
-            SimpleTextSection(">> " + examplesByCase[14]),
-
-            SimpleTextSection(examplesByCase[7]),
-            SimpleTextSection(">> " + examplesByCase[15]),
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
         ],
     );
+    } else if(_title == "Accusatif"){
+      column = Column(
+            children:[
+                TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
+            ],
+        );
+    } else if(_title == "Datif"){
+      column = Column(
+        children:[
+            TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
+        ],
+    );
+    } else {
+      column = Column(
+        children:[
+            TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
+            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
+            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
+        ],
+    );
+    }
+    return column;
+  }
+
+  Widget contentDetailExampleCases(List<String> examplesDeutch, List<String> examplesMalagasy){
+    Widget contentExample = Column();
+    Widget contentAllExamples = Column();
+    for (var i = 0; i < examplesMalagasy.length; i++) {
+      if(i != 0){
+        contentAllExamples = Column( children: <Widget>[
+          SimpleTextSection(examplesDeutch[i]),
+          SimpleTextSection(">> " + examplesMalagasy[i])
+        ]);
+      }
+    }
+    contentExample = Column(
+          children: <Widget>[
+           contentAllExamples,
+          ],
+      );
+    return contentExample;
   }
 
   Widget createTab(Widget content){
@@ -256,8 +299,8 @@ class TabBarSecondMenuCases extends StatelessWidget {
               Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                  SecondMenuSizeBoxCases("Nominatif", columnsTitle, contentLists[0], examplesByCases[0]),
-                  SecondMenuSizeBoxCases("Accusatif", columnsTitle, contentLists[1], examplesByCases[1]),
+                  SecondMenuSizeBoxCases("Nominatif", columnsTitle, contentLists[0], examplesByCases),
+                  SecondMenuSizeBoxCases("Accusatif", columnsTitle, contentLists[1], examplesByCases),
               ],
           ), 
         ],
@@ -267,35 +310,75 @@ class TabBarSecondMenuCases extends StatelessWidget {
 }
 
 class TextInputByCase extends StatefulWidget {
+  final String _title;
+
+  TextInputByCase(this._title);
+
   @override
-  _CreateExercicesByCase createState() => new _CreateExercicesByCase();
+  _CreateExercicesByCase createState() => new _CreateExercicesByCase(_title);
 }
 
 class _CreateExercicesByCase extends State<TextInputByCase>{
-
+    final String _title;
     String result = "";
+
+    _CreateExercicesByCase(this._title);
 
     @override
     Widget build(BuildContext context){
-      return Column (
-            children: <Widget>[
-              rowConstrainedBoxByCase("Das ist die frau is nisc", "Frau ist Frau,", "die"),
-              rowConstrainedBoxByCase("Du bist ", "Lehrer", "der"),
-              rowConstrainedBoxByCase("Sie sind", "Studenten", "die"),
-            ],
-      );
+      Widget column = Column();
+      String hintTextOne = "der/die/das";
+      String hintTextTwo = "den/die/das";
+
+
+      if(_title == "Nominatif"){
+          column = Column (
+                children: <Widget>[
+                  rowConstrainedBoxByCase("Das ist die frau", "Frau ist Frau,", "die", hintTextOne),
+                  rowConstrainedBoxByCase("Du bist ", "Lehrer", "der", hintTextOne),
+                  rowConstrainedBoxByCase("Sie sind", "Studenten", "die", hintTextOne),
+                ],
+          );
+      } else if(_title == "Accusatif"){
+        column = Column (
+              children: <Widget>[
+                rowConstrainedBoxByCase("Deine Frau hast", "Bruder", "den", hintTextTwo),
+                rowConstrainedBoxByCase("Dein Lehrer isst ", "Apfel", "das", hintTextTwo),
+                rowConstrainedBoxByCase("Sie sind", "Studenten", "die", hintTextOne),
+              ],
+        );
+      } else if(_title == "Datif"){
+          column = Column (
+              children: <Widget>[
+                rowConstrainedBoxByCase("Das ist die frau", "Frau ist Frau,", "die", hintTextOne),
+                rowConstrainedBoxByCase("Du bist ", "Lehrer", "der", hintTextOne),
+                rowConstrainedBoxByCase("Sie sind", "Studenten", "die", hintTextOne),
+              ],
+        );
+      } else {
+        column = Column (
+              children: <Widget>[
+                rowConstrainedBoxByCase("Das ist die frau", "Frau ist Frau,", "die", hintTextOne),
+                rowConstrainedBoxByCase("Du bist ", "Lehrer", "der", hintTextOne),
+                rowConstrainedBoxByCase("Sie sind", "Studenten", "die", hintTextOne),
+              ],
+        );
+      }
+
+      return column;
+
     }
 
-    Widget rowConstrainedBoxByCase(String textOne, String textTwo, String theanswer){
+    Widget rowConstrainedBoxByCase(String textOne, String textTwo, String theanswer, String theHintText){
       return Row(
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
-                  constrainedBoxByCase(textOne, textTwo, theanswer),  
+                  constrainedBoxByCase(textOne, textTwo, theanswer, theHintText),  
                 ],
               );
     }
     
-    Widget constrainedBoxByCase(String textOne, String textTwo, String theanswer){
+    Widget constrainedBoxByCase(String textOne, String textTwo, String theanswer, String theHintText){
       return ConstrainedBox(
                   constraints: BoxConstraints(
                   maxWidth: MediaQuery.of(context).size.width),
@@ -315,7 +398,7 @@ class _CreateExercicesByCase extends State<TextInputByCase>{
                                 width: 100.0,
                                 child: TextField(
                                   decoration: InputDecoration(
-                                    hintText: "der/die/das",
+                                    hintText: theHintText,
                                   ),
                                   cursorWidth: 1.5,
                                   maxLength: 3,
@@ -341,7 +424,7 @@ class _CreateExercicesByCase extends State<TextInputByCase>{
     }
 
     Widget computeComparisonAnswer(String answer, String answerTwo){
-      Widget comparisonAnswer = Text("Default");
+      Widget comparisonAnswer = Text("...");
       
       if(answer == answerTwo){
         comparisonAnswer = Text("True");

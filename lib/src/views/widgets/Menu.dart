@@ -5,7 +5,7 @@ class CaseTabBarMenu extends StatelessWidget{
   final String _title;
   final List _columnsTitle;
   final  _contentLists;
-  final List _examplesByCase;
+  final Map _examplesByCase;
   final String routeName;
 
   CaseTabBarMenu(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
@@ -36,7 +36,7 @@ class ExtractArgumentsScreenMianatraAlemana extends StatelessWidget {
   final String _title;
   final List _columnsTitle;
   final _contentLists;
-  final List _examplesByCase;
+  final Map _examplesByCase;
   
   ExtractArgumentsScreenMianatraAlemana(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
   
@@ -50,5 +50,17 @@ class ExtractArgumentsScreenMianatraAlemana extends StatelessWidget {
         child: tabMianatraAlemana,
       ),
     );
+  }
+}
+
+// class for the vocabularies all the content of it
+class ResearchVocabularies extends StatelessWidget{
+  @override 
+  Widget build(BuildContext context){
+    return TextField(
+              decoration: InputDecoration(
+                hintText: 'Search', 
+              ),  
+            );
   }
 }

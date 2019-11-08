@@ -6,17 +6,17 @@ class ContentGrammar extends StatelessWidget{
   final List _title;
   final List _columnsTitle;
   final  _contentLists;
-  final List _examplesByCase;
+  final Map _examplesByCase;
   final List routeName;
 
   ContentGrammar(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
 
   @override
   Widget build(BuildContext context) {
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaNominatif = new ExtractArgumentsScreenMianatraAlemana(_title[0], _columnsTitle, _contentLists[0], _examplesByCase[0], routeName[0]);
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaAccusatif = new ExtractArgumentsScreenMianatraAlemana(_title[1], _columnsTitle, _contentLists[1], _examplesByCase[1], routeName[1]);
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaDatif = new ExtractArgumentsScreenMianatraAlemana(_title[2], _columnsTitle, _contentLists[2], _examplesByCase[2], routeName[2]);
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaGenetif = new ExtractArgumentsScreenMianatraAlemana(_title[3], _columnsTitle, _contentLists[3], _examplesByCase[3], routeName[3]);
+    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaNominatif = new ExtractArgumentsScreenMianatraAlemana(_title[0], _columnsTitle, _contentLists[0], _examplesByCase, routeName[0]);
+    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaAccusatif = new ExtractArgumentsScreenMianatraAlemana(_title[1], _columnsTitle, _contentLists[1], _examplesByCase, routeName[1]);
+    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaDatif = new ExtractArgumentsScreenMianatraAlemana(_title[2], _columnsTitle, _contentLists[2], _examplesByCase, routeName[2]);
+    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaGenetif = new ExtractArgumentsScreenMianatraAlemana(_title[3], _columnsTitle, _contentLists[3], _examplesByCase, routeName[3]);
 
     return Column(
       children: <Widget>[
@@ -90,11 +90,11 @@ class ContentVocabularies extends StatelessWidget{
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Test Threee")
-          ],
+        TextField(
+          decoration: InputDecoration(
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+          ),
         ),
         Row(
           children: <Widget>[

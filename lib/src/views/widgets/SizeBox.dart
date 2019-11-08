@@ -71,7 +71,7 @@ class SecondMenuSizeBoxCases extends StatelessWidget{
     final String _title;
     final List _columnsTitle;
     final _contentLists;
-    final List _examplesByCase;
+    final Map _examplesByCase;
 
     SecondMenuSizeBoxCases(this._title, this._columnsTitle, this._contentLists, this._examplesByCase);
 
