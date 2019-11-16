@@ -148,3 +148,52 @@ class SimpleTextSection extends StatelessWidget {
     );
   }
 }
+
+
+class Frog extends StatelessWidget {
+  const Frog({
+    Key key,
+    this.color = const Color(0xFF2DBD3A),
+    this.child,
+  }) : super(key: key);
+
+  final Color color;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: color, child: child);
+  }
+}
+
+
+class SimpleTextSectionVocabulary  extends StatelessWidget{
+  const SimpleTextSectionVocabulary({
+    Key key,
+    this.color,
+    this.child,
+  }) : super(key: key);
+
+  final Color color;
+  final Widget child;
+  static const double _padding = 16.0;
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            color: color,
+          ),
+          padding: const EdgeInsets.fromLTRB(_padding, 10.0, _padding, _padding),
+          child: child,
+        )
+      ],
+    );
+  }
+}

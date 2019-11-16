@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/Menu.dart';
 import 'package:mianatra_alemana/src/data/dataVocabularies.dart';
+import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
 
 class ContentGrammar extends StatelessWidget{
 
@@ -99,12 +100,6 @@ class ContentVocabularies extends StatelessWidget{
           ),
         ),
         contentDetailVocabulariesByLanguage(malagasyToDeutch),
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Test Threee")
-          ],
-        ),
       ],
     );
   }
@@ -115,9 +110,21 @@ class ContentVocabularies extends StatelessWidget{
     List<String> secondListLanguageVocabularies = languageVocabularies.values.toList();
   
     for (var i = 0; i < firstListLanguageVocabularies.length; i++) {
-        listWidgetsVocabularies.add(
-          Text(firstListLanguageVocabularies[i] + "  =>> " + secondListLanguageVocabularies[i])
-        );
+        if(i%2==0){
+              listWidgetsVocabularies.add(
+                SimpleTextSectionVocabulary(
+                  child: Text(firstListLanguageVocabularies[i] + "  =>> " + secondListLanguageVocabularies[i]),
+                  color: Colors.white10,
+                )
+              );          
+        } else {
+            listWidgetsVocabularies.add(
+              SimpleTextSectionVocabulary(
+                child: Text(firstListLanguageVocabularies[i] + "  =>> " + secondListLanguageVocabularies[i]),
+                color: Colors.grey,
+              )
+            );
+        }
     }
     return Column(children: listWidgetsVocabularies);
   }
