@@ -151,13 +151,11 @@ class HomeMadeCardDialogue extends StatelessWidget {
     
     return Card(
               child: Container(
-                padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
                 child: Column(children: <Widget>[
                   image,
                   text,
                 ],)
-              ),
-              elevation: 10.0,
+              )
             );
   }
   

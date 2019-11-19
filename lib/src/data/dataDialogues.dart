@@ -1,5 +1,12 @@
-var titleDilaogues = [
+var titleDialogues = [
   "text",
   "one",
-  "ishere"
+  "ishere",
+  "fiver",
+  "siix",
+  "seveen",
+  "eight",
+  "ninee",
+  "tenn",
+  "eleven"
 ];

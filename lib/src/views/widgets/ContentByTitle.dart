@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/Menu.dart';
 import 'package:mianatra_alemana/src/data/dataVocabularies.dart';
 import 'package:mianatra_alemana/src/data/dataConjugaisons.dart';
+import 'package:mianatra_alemana/src/data/dataDialogues.dart';
 import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
 import 'package:mianatra_alemana/src/views/style/TextStyle.dart';
 import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
@@ -191,31 +192,31 @@ class ContentConjugaison extends StatelessWidget{
 }
 
 class ContentDialogues extends StatelessWidget{
-  final List _pets = ['Dogs', 'Cats', 'Fish', 'Turtle','title'];
-  
+
   @override
   Widget build(BuildContext context) {
-    return ForLoopCard(_pets);
+    return ForLoopCard(titleDialogues);
   }
+
 }
 
 
 class ForLoopCard extends StatelessWidget {
-  final _listCards;
+  final titleDialogues;
 
-  ForLoopCard(this._listCards);
+  ForLoopCard(this.titleDialogues);
   
   @override 
   Widget build(BuildContext context){
     List<Widget> card = new List<Widget>();
     AssetImage image = AssetImage('assets/icon/icon.png');
     
-    for (var i = 0; i < _listCards.length; i++) {
+    for (var i = 0; i < titleDialogues.length; i++) {
       if(i+1%2!=0 && i%2==0){
             card.add(
               Row(children: <Widget>[
-                HomeMadeCardDialogue(image: Image(image: image), text: Text("Dialogue $i"),),
-                HomeMadeCardDialogue(image: Image(image: image), text: Text("Dialogue ${i+1}"),)
+                HomeMadeCardDialogue(image: Image(image: image, width: 170.0, height: 80.0), text: Text(titleDialogues[i]),),
+                HomeMadeCardDialogue(image: Image(image: image, width: 170.0, height: 80.0), text: Text(titleDialogues[i+1]),),
               ]),
           );
         }
