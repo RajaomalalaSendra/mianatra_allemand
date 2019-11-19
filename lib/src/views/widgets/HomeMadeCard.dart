@@ -133,3 +133,32 @@ class HomeMadeCardTwoNothing extends StatelessWidget {
   }
 
 }
+
+
+class HomeMadeCardDialogue extends StatelessWidget {
+  
+  const HomeMadeCardDialogue({
+    Key key,
+    this.text,
+    this.image,
+  }) : super(key: key);
+
+  final Text text;
+  final Image image;
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return Card(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(40, 20, 40, 20),
+                child: Column(children: <Widget>[
+                  image,
+                  text,
+                ],)
+              ),
+              elevation: 10.0,
+            );
+  }
+  
+}

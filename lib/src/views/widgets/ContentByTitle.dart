@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/Menu.dart';
 import 'package:mianatra_alemana/src/data/dataVocabularies.dart';
+import 'package:mianatra_alemana/src/data/dataConjugaisons.dart';
 import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
+import 'package:mianatra_alemana/src/views/style/TextStyle.dart';
+import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
 
 class ContentGrammar extends StatelessWidget{
 
@@ -33,7 +36,7 @@ class ContentGrammar extends StatelessWidget{
                     ),
                   );
               },
-              child: Text("Nominatif"),
+              child: TextStyleForTitle("Nominatif", Colors.blue),
             )
           ],
         ),
@@ -48,7 +51,7 @@ class ContentGrammar extends StatelessWidget{
                     ),
                   );
               },
-              child: Text("Accusatif"),
+              child:  TextStyleForTitle("Accusatif", Colors.blue),
             )
           ],
         ),
@@ -63,7 +66,7 @@ class ContentGrammar extends StatelessWidget{
                     ),
                   );
               },
-              child: Text("Datif"),
+              child:  TextStyleForTitle("Datif", Colors.blue),
             )
           ],
         ),
@@ -78,7 +81,7 @@ class ContentGrammar extends StatelessWidget{
                     ),
                   );
               },
-              child: Text("Genetif"),
+              child:  TextStyleForTitle("Genetif", Colors.blue),
             )
           ],
         ),
@@ -93,35 +96,41 @@ class ContentVocabularies extends StatelessWidget{
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        TextField(
+        Row( children: <Widget>[
+          Expanded(
+          child: TextField(
           decoration: InputDecoration(
               hintText: "Search",
               prefixIcon: Icon(Icons.search),
+            ),
           ),
         ),
+        Icon(
+              Icons.swap_horizontal_circle,
+              color: Colors.blue
+            ),
+        ]),
         contentDetailVocabulariesByLanguage(malagasyToDeutch),
-      ],
-    );
+      ]);
   }
 
   Widget contentDetailVocabulariesByLanguage(Map languageVocabularies){
     List<Widget> listWidgetsVocabularies = new List<Widget>();
-    List<String> firstListLanguageVocabularies = languageVocabularies.keys.toList();
-    List<String> secondListLanguageVocabularies = languageVocabularies.values.toList();
-  
-    for (var i = 0; i < firstListLanguageVocabularies.length; i++) {
+    List<String> mainListLanguageVocabularies = languageVocabularies.keys.toList()..sort();
+    
+    for (var i = 0; i < mainListLanguageVocabularies.length; i++) {
         if(i%2==0){
               listWidgetsVocabularies.add(
                 SimpleTextSectionVocabulary(
-                  child: Text(firstListLanguageVocabularies[i] + "  =>> " + secondListLanguageVocabularies[i]),
-                  color: Colors.white10,
+                  child: Text(mainListLanguageVocabularies[i] + "  =>> " + languageVocabularies[mainListLanguageVocabularies[i]]),
+                  color: Color(0xffdbf5ff),
                 )
               );          
         } else {
             listWidgetsVocabularies.add(
               SimpleTextSectionVocabulary(
-                child: Text(firstListLanguageVocabularies[i] + "  =>> " + secondListLanguageVocabularies[i]),
-                color: Colors.grey,
+                child: Text(mainListLanguageVocabularies[i] + "  =>> " + languageVocabularies[mainListLanguageVocabularies[i]]),
+                color: Color(0xfffff),
               )
             );
         }
@@ -137,53 +146,80 @@ class ContentConjugaison extends StatelessWidget{
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Test Threee")
-          ],
+        Row( children: <Widget>[
+          Expanded(
+          child: TextField(
+          decoration: InputDecoration(
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+            ),
+          ),
         ),
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Test Threee")
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Test Threee")
-          ],
-        ),
-      ],
-    );
+        Icon(
+              Icons.swap_horizontal_circle,
+              color: Colors.blue
+            ),
+        ]),
+        contentDetailConjugaisonsInGerman(mapVerbs),
+      ]);
   }
+
+  Widget contentDetailConjugaisonsInGerman(Map mapVerbs){
+    List<Widget> listWidgetsConjugaisons = new List<Widget>();
+    List<String> mainListVerbs = mapVerbs.keys.toList()..sort();
+    
+    for (var i = 0; i < mainListVerbs.length; i++) {
+        if(i%2==0){
+              listWidgetsConjugaisons.add(
+                SimpleTextSectionVocabulary(
+                  child: Text(mainListVerbs[i] + "  =>> " + mapVerbs[mainListVerbs[i]]),
+                  color: Color(0xffdbf5ff),
+                )
+              );          
+        } else {
+            listWidgetsConjugaisons.add(
+              SimpleTextSectionVocabulary(
+                child: Text(mainListVerbs[i] + "  =>> " + mapVerbs[mainListVerbs[i]]),
+                color: Color(0xfffff),
+              )
+            );
+        }
+    }
+    return Column(children: listWidgetsConjugaisons);
+  }
+
 }
 
 class ContentDialogues extends StatelessWidget{
+  final List _pets = ['Dogs', 'Cats', 'Fish', 'Turtle','title'];
+  
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Dialogue One")
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Dialogue Two")
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            Text("Test"),
-            Text("Dialogue Three")
-          ],
-        ),
-      ],
-    );
+    return ForLoopCard(_pets);
   }
+}
+
+
+class ForLoopCard extends StatelessWidget {
+  final _listCards;
+
+  ForLoopCard(this._listCards);
+  
+  @override 
+  Widget build(BuildContext context){
+    List<Widget> card = new List<Widget>();
+    AssetImage image = AssetImage('assets/icon/icon.png');
+    
+    for (var i = 0; i < _listCards.length; i++) {
+      if(i+1%2!=0 && i%2==0){
+            card.add(
+              Row(children: <Widget>[
+                HomeMadeCardDialogue(image: Image(image: image), text: Text("Dialogue $i"),),
+                HomeMadeCardDialogue(image: Image(image: image), text: Text("Dialogue ${i+1}"),)
+              ]),
+          );
+        }
+      }
+      return Column(children: card);
+    }
 }
