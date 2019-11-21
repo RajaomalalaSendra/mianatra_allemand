@@ -6,6 +6,7 @@ import 'package:mianatra_alemana/src/data/dataDialogues.dart';
 import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
 import 'package:mianatra_alemana/src/views/style/TextStyle.dart';
 import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
+import 'package:mianatra_alemana/src/views/widgets/DefaultScaffold.dart';
 
 class ContentGrammar extends StatelessWidget{
 
@@ -38,7 +39,7 @@ class ContentGrammar extends StatelessWidget{
                   );
               },
               child: TextStyleForTitle("Nominatif", Colors.blue),
-            )
+            ),
           ],
         ),
         Row(
@@ -215,9 +216,47 @@ class ForLoopCard extends StatelessWidget {
       if(i+1%2!=0 && i%2==0){
             card.add(
               Row(children: <Widget>[
-                HomeMadeCardDialogue(image: Image(image: image, width: 170.0, height: 80.0), text: Text(titleDialogues[i]),),
-                HomeMadeCardDialogue(image: Image(image: image, width: 170.0, height: 80.0), text: Text(titleDialogues[i+1]),),
-              ]),
+                FlatButton(
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DefaultScaffold(
+                          title: Text("Dialogue ${i+1}"),
+                          child: Column(
+                          children: <Widget>[
+                            Text("Me"),
+                            Text("Me"),
+                            Text("Me"),
+                            Text("Me"),
+                          ],
+                        ),),
+                      ),
+                    );
+                },
+              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(titleDialogues[i]),),
+            ),
+            FlatButton(
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DefaultScaffold(
+                        title: Text("Dialogue ${i+2}"),
+                        child: Column(
+                        children: <Widget>[
+                          Text("Me"),
+                          Text("Me"),
+                          Text("Me"),
+                          Text("Me"),
+                        ],
+                      ),),
+                    ),
+                  );
+              },
+              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(titleDialogues[i+1]),),
+            ),
+          ]),
           );
         }
       }
