@@ -7,6 +7,7 @@ import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
 import 'package:mianatra_alemana/src/views/style/TextStyle.dart';
 import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
 import 'package:mianatra_alemana/src/views/widgets/DefaultScaffold.dart';
+import 'package:mianatra_alemana/src/views/widgets/DetailDialogues.dart';
 
 class ContentGrammar extends StatelessWidget{
 
@@ -196,23 +197,24 @@ class ContentDialogues extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return ForLoopCard(titleDialogues);
+    return ForLoopCard(dialogues);
   }
 
 }
 
 
 class ForLoopCard extends StatelessWidget {
-  final titleDialogues;
+  final Map dialogues;
 
-  ForLoopCard(this.titleDialogues);
+  ForLoopCard(this.dialogues);
   
   @override 
   Widget build(BuildContext context){
     List<Widget> card = new List<Widget>();
     AssetImage image = AssetImage('assets/icon/icon.png');
+    List<String> listkeydialogues = dialogues.keys.toList();
     
-    for (var i = 0; i < titleDialogues.length; i++) {
+    for (var i = 0; i < dialogues.length; i++) {
       if(i+1%2!=0 && i%2==0){
             card.add(
               Row(children: <Widget>[
@@ -225,16 +227,13 @@ class ForLoopCard extends StatelessWidget {
                           title: Text("Dialogue ${i+1}"),
                           child: Column(
                           children: <Widget>[
-                            Text("Me"),
-                            Text("Me"),
-                            Text("Me"),
-                            Text("Me"),
+                            DetailDialogue(image: AssetImage(dialogues[listkeydialogues[i]]["image"]), mapContentDialogue: dialogues[listkeydialogues[i]]),
                           ],
                         ),),
                       ),
                     );
                 },
-              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(titleDialogues[i]),),
+              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(listkeydialogues[i]),),
             ),
             FlatButton(
               onPressed: (){
@@ -245,16 +244,13 @@ class ForLoopCard extends StatelessWidget {
                         title: Text("Dialogue ${i+2}"),
                         child: Column(
                         children: <Widget>[
-                          Text("Me"),
-                          Text("Me"),
-                          Text("Me"),
-                          Text("Me"),
+                          DetailDialogue(image: AssetImage(dialogues[listkeydialogues[i+1]]["image"]), mapContentDialogue: dialogues[listkeydialogues[i+1]]),
                         ],
                       ),),
                     ),
                   );
               },
-              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(titleDialogues[i+1]),),
+              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(listkeydialogues[i+1]),),
             ),
           ]),
           );
