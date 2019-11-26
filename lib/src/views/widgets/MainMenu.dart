@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mianatra_alemana/src/views/pages/dialogues_page.dart';
 import 'package:mianatra_alemana/src/views/pages/vocabularies_page.dart';
 import 'package:mianatra_alemana/src/views/widgets/ContentByTitle.dart';
 import 'package:mianatra_alemana/src/views/pages/grammars_page.dart';
@@ -16,7 +17,7 @@ class MainMenu extends StatelessWidget{
                             MainGramarsPage(),
                             MainVocabulariesPage(),
                             ContentConjugaison(),
-                            ContentDialogues()
+                            MainDialoguesPage(),
                           ],
                         ),
                     ),

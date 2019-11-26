@@ -45,7 +45,8 @@ List executable = [
               """CREATE TABLE IF NOT EXISTS dialogue (
                 id_dial INTEGER PRIMARY KEY AUTOINCREMENT,
                 photo_dial TEXT,
-                text_dial TEXT DEFAULT 'No text for the dialogue',
+                text_dial_de TEXT DEFAULT 'Keine text for the dialogue',
+                text_dial_mg TEXT DEFAULT 'Tsisy text hoan ny dialogue',
                 title_dial TEXT DEFAULT 'No title for the dialogue',
                 expl_dial TEXT DEFAULT 'No explanation for the dialogue for now',
                 audio_dial TEXT,

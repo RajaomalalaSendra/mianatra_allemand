@@ -312,3 +312,11 @@ var dialogues = {
     }
   },
 };
+
+var contentDialogues = [
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'}
+];

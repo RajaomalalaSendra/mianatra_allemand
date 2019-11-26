@@ -6,6 +6,7 @@ import 'package:mianatra_alemana/src/models/grammar_model.dart';
 import 'package:mianatra_alemana/src/data/dataVocabularies.dart';
 import 'package:mianatra_alemana/src/data/dataCases.dart';
 import 'package:mianatra_alemana/src/data/executable_data.dart';
+import 'package:mianatra_alemana/src/data/dataDialogues.dart';
 
 class GrammarService{
     
@@ -46,6 +47,13 @@ class GrammarService{
             await db.insert("grammar", {"title_gram": listGrammars[i]["title"], "photo_gram": listGrammars[i]["imageUrl"],
             "subtitle_gram": listGrammars[i]["subtitle"], "num_sub_menu": listGrammars[i]["numSubMenu"]});
           }
+          
+          for(var i=0; i < contentDialogues.length; i++){
+            await db.insert("dialogue", {"photo_dial": contentDialogues[i]["photo_dial"], "title_dial": contentDialogues[i]["title_dial"],
+            "text_dial_de": contentDialogues[i]["text_dial_de"], "text_dial_mg": contentDialogues[i]["text_dial_mg"], "expl_dial": contentDialogues[i]["expl_dial"],
+            "audio_dial": contentDialogues[i]["audio_dial"], "video_dial": contentDialogues[i]["video_dial"]});
+          }
+
 
         });
     }
@@ -60,9 +68,9 @@ class GrammarService{
     getGrammars() async {
       final db = await database;
       var res = await db.query('grammar');
-      List<Grammar> vocabularies = res.isNotEmpty ? res.map((vocabulary) => Grammar.fromJson(vocabulary)).toList() : [];
+      List<Grammar> grammars = res.isNotEmpty ? res.map((vocabulary) => Grammar.fromJson(vocabulary)).toList() : [];
 
-      return vocabularies;
+      return grammars;
     }
 
     getGrammar(int id) async {
