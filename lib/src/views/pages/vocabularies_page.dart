@@ -4,6 +4,9 @@ import 'package:mianatra_alemana/src/blocs/vocabularies_bloc.dart';
 import 'package:mianatra_alemana/src/blocs/view_vocabulary_bloc.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 import 'package:mianatra_alemana/src/views/screens/view_vocabulary.dart';
+import 'package:mianatra_alemana/src/data/dataVocabularies.dart';
+import 'package:mianatra_alemana/src/views/widgets/search.dart';
+import 'package:mianatra_alemana/src/views/style/text_style.dart';
 
 
 class MainVocabulariesPage extends StatelessWidget {
@@ -36,15 +39,20 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
         // we can simply use this to retrieve it.
         _vocabulariesBloc = BlocProvider.of<VocabulariesBloc>(context);
         _vocabulariesBloc.deleteVocabularies();
-        _addVocabulary();
+        _addVocabularies();
     }
 
-    void _addVocabulary() async {
-        Vocabulary vocabulary = new Vocabulary(wordDe: 'Deutch', wordMg: 'Malagasy');
-
+    void _addVocabularies() async {
+        
+        for (var i = 0; i < listVocabularies.length; i++) {
+        
+        Vocabulary vocabulary  = new Vocabulary(wordDe: listVocabularies[i]["de"], wordMg: listVocabularies[i]["mg"],
+        explDe: listVocabularies[i]["exp_de"], explMg: listVocabularies[i]["exp_mg"], idType: listVocabularies[i]["typ"]);
+        
         // Add this newly created note to the add note stream. Doing this
         // will trigger the listener in `notes_bloc.dart` and call `_handleAddNote`.
         _vocabulariesBloc.inAddVocabulary.add(vocabulary);
+        } 
     }
 
     void _navigateToVocabulary(Vocabulary vocabulary) async {
@@ -94,33 +102,24 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
 
                                         List<Vocabulary> vocabularies = snapshot.data;
 
-                                        return ListView.builder(
+                                        return Search( 
+                                          child: ListView.builder(
                                             itemCount: snapshot.data.length,
                                             itemBuilder: (BuildContext context, int index) {
                                                 Vocabulary vocabulary = vocabularies[index];
 
-                                                return GestureDetector(
-                                                    onTap: () {
-                                                        _navigateToVocabulary(vocabulary);
-                                                    },
-                                                    child: Container(
-                                                        height: 40,
-                                                        child: Row(
-                                                          children: <Widget> [
-                                                            Text(
-                                                            vocabulary.wordDe.toString()+" "+vocabulary.idVoc.toString(),
-                                                            style: TextStyle(
-                                                                fontSize: 18,
-                                                                color: Colors.blue,
-                                                            ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                ),
-                                              );
-                                            },
-                                        );
+                                                return ListTile(
+                                                  onTap: () {
+                                                      _navigateToVocabulary(vocabulary);
+                                                  },
+                                                  title: TextStyleForTitle(listVocabularies[index]["mg"], Colors.blue),
+                                                  leading: Icon(Icons.apps),
+                                                  trailing: Icon(Icons.keyboard_arrow_right),
+                                                );
+                                            }),
+                                          );
                                     }
+
 
                                     // If the data is loading in, display a progress indicator
                                     // to indicate that. You don't have to use a progress

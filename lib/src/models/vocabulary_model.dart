@@ -1,12 +1,18 @@
 class Vocabulary {
   int idVoc;
+  int idType;
   String wordDe;
   String wordMg;
+  String explDe;
+  String explMg;
 
   Vocabulary({
       this.wordDe,
       this.wordMg,
-      this.idVoc
+      this.idVoc,
+      this.explDe,
+      this.explMg,
+      this.idType
   });
 
   Map<String, dynamic> toJson() {
@@ -14,6 +20,9 @@ class Vocabulary {
       'id_voc': idVoc,
       'word_de': wordDe,
       'word_mg': wordMg,
+      'expl_de': explDe,
+      'expl_mg': explMg,
+      'id_type': idType
     };
   }
 
@@ -23,12 +32,15 @@ class Vocabulary {
         idVoc: json["id_voc"],
         wordDe: json["word_de"],
         wordMg: json["word_mg"],
+        explDe: json["expl_de"],
+        explMg: json["expl_mg"],
+        idType: json["id_type"],
   );
 
   // Implement toString to make it easier to see information about
   // each vocabularies when using the print statement.
   @override
   String toString() {
-    return '$idVoc,$wordDe,$wordMg';
+    return '$idVoc,$wordDe,$wordMg,$explDe,$explMg';
   }
 }

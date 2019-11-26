@@ -1,27 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/views/widgets/MainMenu.dart';
 import 'package:mianatra_alemana/src/views/widgets/RoutesAndTabs.dart';
 import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
 
-// class HomeMenuSizeBoxGrammar extends StatelessWidget{
-//     final String _title;
-
-//     HomeMenuSizeBoxGrammar(this._title);
-
-//     Widget build(BuildContext context){
-//       return HomeMadeCardTwo("Learn The Grammar\n in German", _title, MainMenuGrammar(_title));
-//     }
-// }
-
-class HomeMenuSizeBoxVocabularies extends StatelessWidget{
-    final String _title;
-
-    HomeMenuSizeBoxVocabularies(this._title);
-
-    Widget build(BuildContext context){
-      return  HomeMadeCardTwo("Learn Vocabularies \n German", _title, MainMenuVocabularies(_title));
-    }
-}
 
 class HomeMenuSizeBoxDialogues extends StatelessWidget{
     final String _title;
@@ -32,17 +12,6 @@ class HomeMenuSizeBoxDialogues extends StatelessWidget{
       return HomeMadeCardTwoNothing("Learn The Dialogues\n in German", _title);
     }
 }
-
-// class MainMenuSizeBoxCases extends StatelessWidget{
-//     final String _title;
-
-//     MainMenuSizeBoxCases(this._title);
-
-
-//     Widget build(BuildContext context){  
-//       return HomeMadeCardTwo("Learn The Cases\n in German",_title, SecondMenuCases(_title));
-//     }
-// }
 
 class MainMenuSizeBoxConjugaison extends StatelessWidget {
   final String _title;

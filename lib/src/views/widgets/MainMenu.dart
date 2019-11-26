@@ -1,56 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/views/widgets/VocabulariesPage.dart';
+import 'package:mianatra_alemana/src/views/pages/vocabularies_page.dart';
 import 'package:mianatra_alemana/src/views/widgets/ContentByTitle.dart';
 import 'package:mianatra_alemana/src/data/dataCases.dart';
 
-// class MainMenuGrammar extends StatelessWidget{
-//   final String _title;
-
-//   MainMenuGrammar(this._title);
-
-//   @override
-//   Widget build(BuildContext context){
-//     return Scaffold(
-      
-//       appBar: AppBar(
-//         title: Text(_title),
-//       ),
-//       body: TabBarMainMenuGrammar(),
-//     );
-//   }
-// }
-
-class MainMenuVocabularies extends StatelessWidget{
-  final String _title;
-
-  MainMenuVocabularies(this._title);
-
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      
-      appBar: AppBar(
-        title: Text(_title),
-      ),
-      body: MainVocabulariesPage(),
-    );
-  }
-}
 
 class MainMenu extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return   DefaultTabController(
-            length: 5,
+            length: 4,
             child: Scaffold(
                 appBar: this.appBarByTitle(),
                 body: TabBarView(
                           children: <Widget>[
                             ContentGrammar(contentMaps),
-                            ContentVocabularies(),
-                            ContentConjugaison(),
-                            ContentDialogues(),
                             MainVocabulariesPage(),
+                            ContentConjugaison(),
+                            ContentDialogues()
                           ],
                         ),
                     ),
@@ -70,8 +36,6 @@ class MainMenu extends StatelessWidget{
                       text: "Conjugaison"),
                       Tab(icon: Icon(Icons.ac_unit),
                       text: "Dialogues"),
-                      Tab(icon: Icon(Icons.accessible_forward),
-                      text: "Vocabs"),
                     ],
                 ),
               );

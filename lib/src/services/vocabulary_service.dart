@@ -1,14 +1,14 @@
+import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 
-class DBProvider {
-    // Create a singleton
-    DBProvider._();
-
-    static final DBProvider db = DBProvider._();
+class VocabularyService{
+    
+    VocabularyService._();
+  
+    static final VocabularyService db = VocabularyService._();
     Database _database;
 
     Future<Database> get database async {
@@ -32,7 +32,7 @@ class DBProvider {
             // Create  the vocabulary and the conjugaison and the dialogue and the grammar and other tables I can create
             
             await db.execute('''
-                CREATE TABLE vocabulary (
+                CREATE TABLE IF NOT EXISTS vocabulary (
                     id_voc INTEGER PRIMARY KEY AUTOINCREMENT,
                     word_de TEXT DEFAULT 'Deutch',
                     word_mg TEXT DEFAULT 'Malagasy',
@@ -40,13 +40,10 @@ class DBProvider {
                     expl_mg TEXT,
                     id_type INTEGER
                 );
-                INSERT INTO vocabulary(word_de, word_mg, expl_de, expl_mg, id_type) VALUES ('essen', 'mihinana', 'essen ist mihinana', 'mihinana no atao hoe essen', 1);
             ''');
         });
     }
-
-
-    // For the vocabularies
+  // For the vocabularies
     newVocabulary(Vocabulary vocabulary) async {
       final db = await database;
       var res = await db.insert('vocabulary', vocabulary.toJson());

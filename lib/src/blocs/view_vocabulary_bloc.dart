@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
-import 'package:mianatra_alemana/src/data/database.dart';
+import 'package:mianatra_alemana/src/services/vocabulary_service.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 
 class ViewVocabularyBloc implements BlocBase {
@@ -31,11 +30,11 @@ class ViewVocabularyBloc implements BlocBase {
     }
 
     void _handleSaveVocabulary(Vocabulary vocabulary) async {
-        await DBProvider.db.updateVocabulary(vocabulary);
+        await VocabularyService.db.updateVocabulary(vocabulary);
     }
 
     void _handleDeleteVocabulary(int id) async {
-        await DBProvider.db.deleteVocabulary(id);
+        await VocabularyService.db.deleteVocabulary(id);
 
         // Set this to true in order to ensure a note is deleted
         // before doing anything else

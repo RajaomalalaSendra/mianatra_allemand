@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
-import 'package:mianatra_alemana/src/data/database.dart';
+import 'package:mianatra_alemana/src/services/vocabulary_service.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 
 class VocabulariesBloc implements BlocBase {
@@ -36,7 +35,7 @@ class VocabulariesBloc implements BlocBase {
 
     void getVocabularies() async {
         // Retrieve all the notes from the database
-        List<Vocabulary> vocabularies = await DBProvider.db.getVocabularies();
+        List<Vocabulary> vocabularies = await VocabularyService.db.getVocabularies();
 
         // Add all of the notes to the stream so we can grab them later from our pages
         _inVocabularies.add(vocabularies);
@@ -44,7 +43,7 @@ class VocabulariesBloc implements BlocBase {
 
     void _handleAddVocabulary(Vocabulary vocabulary) async {
         // Create the note in the database
-        await DBProvider.db.newVocabulary(vocabulary);
+        await VocabularyService.db.newVocabulary(vocabulary);
 
         // Retrieve all the notes again after one is added.
         // This allows our pages to update properly and display the
@@ -54,7 +53,7 @@ class VocabulariesBloc implements BlocBase {
 
     void deleteVocabularies() async {
         // Retrieve all the notes from the database
-        List<Vocabulary> vocabularies = await DBProvider.db.deleteVocabularies();
+        List<Vocabulary> vocabularies = await VocabularyService.db.deleteVocabularies();
         _inVocabularies.add(vocabularies);
     }
 }
