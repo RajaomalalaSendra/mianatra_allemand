@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/data/blocs/bloc_provider.dart';
-import 'package:mianatra_alemana/src/data/blocs/vocabularies_bloc.dart';
-import 'package:mianatra_alemana/src/data/blocs/view_vocabulary_bloc.dart';
+import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
+import 'package:mianatra_alemana/src/blocs/vocabularies_bloc.dart';
+import 'package:mianatra_alemana/src/blocs/view_vocabulary_bloc.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 import 'package:mianatra_alemana/src/views/screens/view_vocabulary.dart';
 
@@ -35,10 +35,12 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
         // Thanks to the BlocProvider providing this page with the NotesBloc,
         // we can simply use this to retrieve it.
         _vocabulariesBloc = BlocProvider.of<VocabulariesBloc>(context);
+        _vocabulariesBloc.deleteVocabularies();
+        _addVocabulary();
     }
 
     void _addVocabulary() async {
-        Vocabulary vocabulary = new Vocabulary(deword: 'Deutch', mgword: 'Malagasy');
+        Vocabulary vocabulary = new Vocabulary(wordDe: 'Deutch', wordMg: 'Malagasy');
 
         // Add this newly created note to the add note stream. Doing this
         // will trigger the listener in `notes_bloc.dart` and call `_handleAddNote`.
@@ -106,7 +108,7 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
                                                         child: Row(
                                                           children: <Widget> [
                                                             Text(
-                                                            vocabulary.deword.toString() +" => "+ vocabulary.mgword.toString(),
+                                                            vocabulary.wordDe.toString()+" "+vocabulary.idVoc.toString(),
                                                             style: TextStyle(
                                                                 fontSize: 18,
                                                                 color: Colors.blue,
@@ -133,11 +135,7 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
                         ),
                     ],
                 ),
-            ),
-            floatingActionButton: FloatingActionButton(
-                onPressed: _addVocabulary,
-                child: Icon(Icons.add),
-            ),
+            )
         );
     }
 }

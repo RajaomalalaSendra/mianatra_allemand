@@ -41,7 +41,7 @@ class MainMenu extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return   DefaultTabController(
-            length: 4,
+            length: 5,
             child: Scaffold(
                 appBar: this.appBarByTitle(),
                 body: TabBarView(
@@ -50,6 +50,7 @@ class MainMenu extends StatelessWidget{
                             ContentVocabularies(),
                             ContentConjugaison(),
                             ContentDialogues(),
+                            MainVocabulariesPage(),
                           ],
                         ),
                     ),
@@ -69,6 +70,8 @@ class MainMenu extends StatelessWidget{
                       text: "Conjugaison"),
                       Tab(icon: Icon(Icons.ac_unit),
                       text: "Dialogues"),
+                      Tab(icon: Icon(Icons.accessible_forward),
+                      text: "Vocabs"),
                     ],
                 ),
               );

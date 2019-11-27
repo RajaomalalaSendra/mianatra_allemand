@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:mianatra_alemana/src/data/blocs/bloc_provider.dart';
+import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
 import 'package:mianatra_alemana/src/data/database.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 
@@ -50,5 +50,11 @@ class VocabulariesBloc implements BlocBase {
         // This allows our pages to update properly and display the
         // newly added note.
         getVocabularies();
+    }
+
+    void deleteVocabularies() async {
+        // Retrieve all the notes from the database
+        List<Vocabulary> vocabularies = await DBProvider.db.deleteVocabularies();
+        _inVocabularies.add(vocabularies);
     }
 }

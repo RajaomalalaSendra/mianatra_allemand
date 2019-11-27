@@ -1,34 +1,34 @@
 class Vocabulary {
-  int id;
-  String deword;
-  String mgword;
+  int idVoc;
+  String wordDe;
+  String wordMg;
 
   Vocabulary({
-      this.deword,
-      this.mgword,
-      this.id
+      this.wordDe,
+      this.wordMg,
+      this.idVoc
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'deword': deword,
-      'mgword': mgword,
+      'id_voc': idVoc,
+      'word_de': wordDe,
+      'word_mg': wordMg,
     };
   }
 
 
   // Create a Note from JSON data
   factory Vocabulary.fromJson(Map<String, dynamic> json) => Vocabulary(
-        id: json["id"],
-        deword: json["deword"],
-        mgword: json["mgword"],
+        idVoc: json["id_voc"],
+        wordDe: json["word_de"],
+        wordMg: json["word_mg"],
   );
 
   // Implement toString to make it easier to see information about
   // each vocabularies when using the print statement.
   @override
   String toString() {
-    return '$id,$deword,$mgword';
+    return '$idVoc,$wordDe,$wordMg';
   }
 }

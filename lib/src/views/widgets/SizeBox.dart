@@ -76,7 +76,7 @@ class SecondMenuSizeBoxCases extends StatelessWidget{
     Widget build(BuildContext context){
       TabBarMianatraAlemana tabBarMianatraAlemana = new TabBarMianatraAlemana(_title, _contentMaps);
       List columnsTitle = _contentMaps["columnsTitle"];
-      
+
       for (var i = 0; i < columnsTitle.length; i++){
         return HomeMadeCardTwo("Apprendre le \n cas " + _title,_title, tabBarMianatraAlemana);
       }

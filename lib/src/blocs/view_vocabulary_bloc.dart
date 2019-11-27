@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:mianatra_alemana/src/data/blocs/bloc_provider.dart';
+import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
 import 'package:mianatra_alemana/src/data/database.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 

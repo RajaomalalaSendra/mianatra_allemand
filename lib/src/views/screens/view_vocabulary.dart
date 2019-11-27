@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/data/blocs/bloc_provider.dart';
-import 'package:mianatra_alemana/src/data/blocs/view_vocabulary_bloc.dart';
+import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
+import 'package:mianatra_alemana/src/blocs/view_vocabulary_bloc.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 
 class ViewVocabularyPage extends StatefulWidget {
@@ -25,14 +25,14 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
         super.initState();
 
         _viewVocabularyBloc = BlocProvider.of<ViewVocabularyBloc>(context);
-        _dewordVocabularyController.text = widget.vocabulary.deword;
-        _mgwordVocabularyController.text = widget.vocabulary.mgword;
+        _dewordVocabularyController.text = widget.vocabulary.wordDe;
+        _mgwordVocabularyController.text = widget.vocabulary.wordMg;
 
     }
 
     void _saveVocabulary() async {
-        widget.vocabulary.deword = _dewordVocabularyController.text;
-        widget.vocabulary.mgword = _mgwordVocabularyController.text;
+        widget.vocabulary.wordDe = _dewordVocabularyController.text;
+        widget.vocabulary.wordMg = _mgwordVocabularyController.text;
 
         // Add the updated note to the save note stream. This triggers the function
         // we set in the listener.
@@ -42,7 +42,7 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
     void _deleteVocabulary() {
         // Add the note id to the delete note stream. This triggers the function
         // we set in the listener.
-        _viewVocabularyBloc.inDeleteVocabulary.add(widget.vocabulary.id);
+        _viewVocabularyBloc.inDeleteVocabulary.add(widget.vocabulary.idVoc);
 
         // Wait for `deleted` to be set before popping back to the main page. This guarantees there's no
         // mismatch between what's stored in the database and what's being displayed on the page.
@@ -61,7 +61,7 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: Text(widget.vocabulary.deword.toString() + "..." + widget.vocabulary.mgword.toString()),
+                title: Text(widget.vocabulary.wordDe.toString() + "..." + widget.vocabulary.wordMg.toString()),
                 actions: <Widget>[
                     IconButton(
                         icon: Icon(Icons.save),
@@ -78,12 +78,11 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
                   children: <Widget>[
                     TextField(
                       maxLines: null,
-                      controller: _dewordVocabularyController,
+                      controller:  _dewordVocabularyController
                     ),
-
                     TextField(
                       maxLines: null,
-                      controller: _mgwordVocabularyController,
+                      controller:  _mgwordVocabularyController
                     ),
                   ],
                 ),

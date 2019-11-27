@@ -26,20 +26,27 @@ class DBProvider {
         // when the app is deleted.
         Directory documentsDir = await getApplicationDocumentsDirectory();
         String path = join(documentsDir.path, 'app.db');
-
+        
         return await openDatabase(path, version: 1, onOpen: (db) async {
         }, onCreate: (Database db, int version) async {
-            // Create the note table
+            // Create  the vocabulary and the conjugaison and the dialogue and the grammar and other tables I can create
+            
             await db.execute('''
-                CREATE TABLE  IF NOT EXISTS vocabulary(
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    deword TEXT DEFAULT 'Deutch',
-                    mgword TEXT DEFAULT 'Malagasy'
-                )
+                CREATE TABLE vocabulary (
+                    id_voc INTEGER PRIMARY KEY AUTOINCREMENT,
+                    word_de TEXT DEFAULT 'Deutch',
+                    word_mg TEXT DEFAULT 'Malagasy',
+                    expl_de TEXT,
+                    expl_mg TEXT,
+                    id_type INTEGER
+                );
+                INSERT INTO vocabulary(word_de, word_mg, expl_de, expl_mg, id_type) VALUES ('essen', 'mihinana', 'essen ist mihinana', 'mihinana no atao hoe essen', 1);
             ''');
         });
     }
 
+
+    // For the vocabularies
     newVocabulary(Vocabulary vocabulary) async {
       final db = await database;
       var res = await db.insert('vocabulary', vocabulary.toJson());
@@ -57,14 +64,14 @@ class DBProvider {
 
     getVocabulary(int id) async {
       final db = await database;
-      var res = await db.query('vocabulary', where: 'id = ?', whereArgs: [id]);
+      var res = await db.query('vocabulary', where: 'id_voc = ?', whereArgs: [id]);
 
       return res.isNotEmpty ? Vocabulary.fromJson(res.first) : null;
     }
 
     updateVocabulary(Vocabulary vocabulary) async {
       final db = await database;
-      var res = await db.update('vocabulary', vocabulary.toJson(), where: 'id = ?', whereArgs: [vocabulary.id]);
+      var res = await db.update('vocabulary', vocabulary.toJson(), where: 'id_voc = ?', whereArgs: [vocabulary.idVoc]);
 
       return res;
     }
@@ -72,6 +79,11 @@ class DBProvider {
     deleteVocabulary(int id) async {
       final db = await database;
 
-      db.delete('vocabulary', where: 'id = ?', whereArgs: [id]);
+      db.delete('vocabulary', where: 'id_voc = ?', whereArgs: [id]);
+    }
+
+    deleteVocabularies() async {
+      final db = await database;
+      db.delete('vocabulary');
     }
 }
