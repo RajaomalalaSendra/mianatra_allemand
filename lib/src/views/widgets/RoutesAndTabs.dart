@@ -165,58 +165,6 @@ class TabBarMianatraAlemana extends StatelessWidget {
   }
 }
 
-// class TabBarHomeMenu  extends StatelessWidget {
-
-//   Widget build(BuildContext context){
-//     return   Scaffold(
-//       body: 
-//           Column(
-//             children: <Widget>[
-//               Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: [
-//                   HomeMenuSizeBoxGrammar("Grammaire"),
-//                   HomeMenuSizeBoxVocabularies("Vocabulaire"),
-//               ],
-//           ), 
-//              Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: <Widget>[
-//                   HomeMenuSizeBoxDialogues("Dialogues"),
-//                   HomeMenuSizeBoxDialogues("Dialogues II"),
-//               ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class TabBarMainMenuGrammar  extends StatelessWidget {
-
-//   Widget build(BuildContext context){
-//     return   Scaffold(
-//       body: 
-//           Column(
-//             children: <Widget>[
-//               Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: [
-//                   MainMenuSizeBoxCases("Cas"),
-//                   MainMenuSizeBoxConjugaison("Conjugaison"),
-//               ],
-//           ), 
-//           Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: [
-//                 MainMenuSizeBoxTexts("Textes"),
-//           ],)
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 class TabBarMainMenuVocabularies extends StatelessWidget {
   final List<String> textOne = ['Das Obst', 'Das Gemuse', 'Die Apfel', 'Der Druker', 'Die Kulie'];
   final List<String> textTwo = ['Ny voankazo', 'Ny legioma', 'Ny poma', 'Ny imprimante', 'Ny penina'];
@@ -254,25 +202,6 @@ class TabBarMainMenuVocabularies extends StatelessWidget {
   }
 }
 
-// class TabBarSecondMenuCases extends StatelessWidget {  
-
-//   Widget build(BuildContext context){
-//     return   Scaffold(
-//       body: 
-//           Column(
-//             children: <Widget>[
-//               Row(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               children: [
-//                   SecondMenuSizeBoxCases("Nominatif", columnsTitle, contentLists[0], _contentMapss),
-//                   SecondMenuSizeBoxCases("Accusatif", columnsTitle, contentLists[1], _contentMapss),
-//               ],
-//           ), 
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class TextInputByCase extends StatefulWidget {
   final String _title;

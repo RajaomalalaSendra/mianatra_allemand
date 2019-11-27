@@ -140,3 +140,11 @@ var contentMaps =
       }
   }
 };
+
+
+var listGrammars = [
+    { "imageUrl": "assets/images/n.png", "subtitle": "Subtitle for Nominatif", "title": "Nominatif", "numSubMenu": 2},
+    {"imageUrl": "assets/images/a.png", "subtitle": "Subtitle for Accusatif", "title": "Accusatif", "numSubMenu": 2},
+    {"imageUrl": "assets/images/d.png", "subtitle": "Subtitle for Datif", "title": "Datif", "numSubMenu": 2},
+    {"imageUrl": "assets/images/g.png", "subtitle": "Subtitle for Genetif", "title": "Genetif", "numSubMenu": 2}
+];

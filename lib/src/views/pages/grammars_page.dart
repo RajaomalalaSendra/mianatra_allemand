@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
-import 'package:mianatra_alemana/src/blocs/vocabularies_bloc.dart';
-import 'package:mianatra_alemana/src/blocs/view_vocabulary_bloc.dart';
-import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
-import 'package:mianatra_alemana/src/views/screens/view_vocabulary.dart';
-import 'package:mianatra_alemana/src/data/dataVocabularies.dart';
-import 'package:mianatra_alemana/src/views/widgets/search.dart';
+import 'package:mianatra_alemana/src/blocs/grammars_bloc.dart';
+import 'package:mianatra_alemana/src/blocs/view_grammar_bloc.dart';
+import 'package:mianatra_alemana/src/models/grammar_model.dart';
+import 'package:mianatra_alemana/src/views/screens/view_grammar.dart';
+import 'package:mianatra_alemana/src/data/dataCases.dart';
 import 'package:mianatra_alemana/src/views/style/text_style.dart';
 
 
-class MainVocabulariesPage extends StatelessWidget {
+class MainGramarsPage extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return BlocProvider(
-                bloc: VocabulariesBloc(),
-                child: VocabulariesPage(),
+                bloc: GrammarsBloc(),
+                child: GrammarsPage(),
         );
     }
 }
 
-class VocabulariesPage extends StatefulWidget {
-    VocabulariesPage({
+class GrammarsPage extends StatefulWidget {
+    GrammarsPage({
         Key key,
     }) : super(key: key);
 
     @override
-    _VocabulariesPageState createState() => _VocabulariesPageState();
+    _GrammarsPageState createState() => _GrammarsPageState();
 }
 
-class _VocabulariesPageState extends State<VocabulariesPage> {
-    VocabulariesBloc _vocabulariesBloc;
+class _GrammarsPageState extends State<GrammarsPage> {
+    GrammarsBloc _grammarsBloc;
 
     @override
     void initState() {
@@ -37,10 +36,23 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
 
         // Thanks to the BlocProvider providing this page with the NotesBloc,
         // we can simply use this to retrieve it.
-        _vocabulariesBloc = BlocProvider.of<VocabulariesBloc>(context);
+        _grammarsBloc = BlocProvider.of<GrammarsBloc>(context);
     }
 
-    void _navigateToVocabulary(Vocabulary vocabulary) async {
+    // void _addGrammars() async {
+        
+    //     for (var i = 0; i < listGrammars.length; i++) {
+        
+    //     Grammar grammar  = new Grammar(titleGram: listGrammars[i]["title"], photoGram: listGrammars[i]["imageUrl"],
+    //     subtitleGram: listGrammars[i]["subtitle"], numSubMenu: listGrammars[i]["numSubMenu"]);
+        
+    //     // Add this newly created note to the add note stream. Doing this
+    //     // will trigger the listener in `notes_bloc.dart` and call `_handleAddNote`.
+    //     _grammarsBloc.inAddGrammar.add(grammar);
+    //     } 
+    // }
+
+    void _navigateToGrammar(Grammar grammar) async {
         // Push ViewNotePage, and store any return value in update. This will
         // be used to tell this page to update the note stream after a note is deleted.
         // If a note isn't deleted, this will be set to null and the note stream will
@@ -50,9 +62,10 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
                 // Once again, use the BlocProvider to pass the ViewNoteBloc
                 // to the ViewNotePage
                 builder: (context) => BlocProvider(
-                    bloc: ViewVocabularyBloc(),
-                    child: ViewVocabularyPage(
-                        vocabulary: vocabulary,
+                    bloc: ViewGrammarBloc(),
+                    child: ViewGrammarPage(
+                        grammar: grammar,
+                        contentMaps: contentMaps,
                     ),
                 ),
             ),
@@ -60,7 +73,7 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
 
         // If update was set, get all the notes again, updating the stream
         if (update != null) {
-            _vocabulariesBloc.getVocabularies();
+            _grammarsBloc.getGrammars();
         }
     }
 
@@ -75,34 +88,35 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
                             // The StreamBuilder allows us to make use of our streams and display
                             // that data on our page. It automatically updates when the stream updates.
                             // Whenever you want to display stream data, you'll use the StreamBuilder.
-                            child: StreamBuilder<List<Vocabulary>>(
-                                stream: _vocabulariesBloc.vocabularies,
-                                builder: (BuildContext context, AsyncSnapshot<List<Vocabulary>> snapshot) {
+                            child: StreamBuilder<List<Grammar>>(
+                                stream: _grammarsBloc.grammars,
+                                builder: (BuildContext context, AsyncSnapshot<List<Grammar>> snapshot) {
                                     // Make sure data exists and is actually loaded
                                     if (snapshot.hasData) {
                                         // If there are no notes (data), display this message.
                                         if (snapshot.data.length == 0) {
-                                            return Text('No vocabularies');
+                                            return Text('No Grammar');
                                         }
 
-                                        List<Vocabulary> vocabularies = snapshot.data;
+                                        List<Grammar> grammars = snapshot.data;
 
-                                        return Search( 
-                                          child: ListView.builder(
+                                        return ListView.builder(
                                             itemCount: snapshot.data.length,
                                             itemBuilder: (BuildContext context, int index) {
-                                                Vocabulary vocabulary = vocabularies[index];
+                                                Grammar grammar = grammars[index];
 
                                                 return ListTile(
                                                   onTap: () {
-                                                      _navigateToVocabulary(vocabulary);
+                                                      _navigateToGrammar(grammar);
                                                   },
-                                                  title: TextStyleForTitle(listVocabularies[index]["mg"], Colors.blue),
-                                                  leading: Icon(Icons.apps),
+                                                  title: TextStyleForTitle(listGrammars[index]["title"], Colors.blue),
+                                                  leading: CircleAvatar(
+                                                      backgroundImage:  AssetImage(listGrammars[index]["imageUrl"]),
+                                                    ),
                                                   trailing: Icon(Icons.keyboard_arrow_right),
+                                                  subtitle: Text("${listGrammars[index]["subtitle"]}", style: TextStyle(color: Colors.black54, fontSize: 13.0),),
                                                 );
-                                            }),
-                                          );
+                                            });
                                     }
 
 

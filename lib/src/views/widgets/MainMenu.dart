@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/pages/vocabularies_page.dart';
 import 'package:mianatra_alemana/src/views/widgets/ContentByTitle.dart';
-import 'package:mianatra_alemana/src/data/dataCases.dart';
+import 'package:mianatra_alemana/src/views/pages/grammars_page.dart';
 
 
 class MainMenu extends StatelessWidget{
@@ -13,7 +13,7 @@ class MainMenu extends StatelessWidget{
                 appBar: this.appBarByTitle(),
                 body: TabBarView(
                           children: <Widget>[
-                            ContentGrammar(contentMaps),
+                            MainGramarsPage(),
                             MainVocabulariesPage(),
                             ContentConjugaison(),
                             ContentDialogues()

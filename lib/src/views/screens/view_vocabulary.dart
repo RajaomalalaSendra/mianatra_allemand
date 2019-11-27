@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
-import 'package:mianatra_alemana/src/blocs/view_vocabulary_bloc.dart';
+// import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
+// import 'package:mianatra_alemana/src/blocs/view_vocabulary_bloc.dart';
 import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
 
 class ViewVocabularyPage extends StatefulWidget {
@@ -16,17 +16,17 @@ class ViewVocabularyPage extends StatefulWidget {
 }
 
 class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
-    ViewVocabularyBloc _viewVocabularyBloc;
-    TextEditingController _dewordVocabularyController = new TextEditingController();
-    TextEditingController _mgwordVocabularyController = new TextEditingController();
+    // ViewVocabularyBloc _viewVocabularyBloc;
+    // TextEditingController _dewordVocabularyController = new TextEditingController();
+    // TextEditingController _mgwordVocabularyController = new TextEditingController();
 
     @override
     void initState() {
         super.initState();
 
-        _viewVocabularyBloc = BlocProvider.of<ViewVocabularyBloc>(context);
-        _dewordVocabularyController.text = widget.vocabulary.wordDe;
-        _mgwordVocabularyController.text = widget.vocabulary.wordMg;
+        // _viewVocabularyBloc = BlocProvider.of<ViewVocabularyBloc>(context);
+        // _dewordVocabularyController.text = widget.vocabulary.wordDe;
+        // _mgwordVocabularyController.text = widget.vocabulary.wordMg;
 
     }
 
@@ -62,16 +62,6 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
         return Scaffold(
             appBar: AppBar(
                 title: Text(widget.vocabulary.wordDe.toString() + "..." + widget.vocabulary.wordMg.toString()),
-                // actions: <Widget>[
-                //     IconButton(
-                //         icon: Icon(Icons.save),
-                //         onPressed: _saveVocabulary,
-                //     ),
-                //     IconButton(
-                //         icon: Icon(Icons.delete),
-                //         onPressed: _deleteVocabulary,
-                //     ),
-                // ],
             ),
             body: Container(
                 child: Column(

@@ -29,18 +29,6 @@ class VocabularyService{
         
         return await openDatabase(path, version: 1, onOpen: (db) async {
         }, onCreate: (Database db, int version) async {
-            // Create  the vocabulary and the conjugaison and the dialogue and the grammar and other tables I can create
-            
-            await db.execute('''
-                CREATE TABLE IF NOT EXISTS vocabulary (
-                    id_voc INTEGER PRIMARY KEY AUTOINCREMENT,
-                    word_de TEXT DEFAULT 'Deutch',
-                    word_mg TEXT DEFAULT 'Malagasy',
-                    expl_de TEXT,
-                    expl_mg TEXT,
-                    id_type INTEGER
-                );
-            ''');
         });
     }
   // For the vocabularies

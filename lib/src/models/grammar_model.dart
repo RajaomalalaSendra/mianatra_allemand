@@ -1,14 +1,14 @@
 class Grammar {
   int idGram;
   int numSubMenu;
-  String title;
+  String titleGram;
   String subtitleGram;
   String photoGram;
 
   Grammar({
       this.idGram,
       this.numSubMenu,
-      this.title,
+      this.titleGram,
       this.subtitleGram,
       this.photoGram,
   });
@@ -17,7 +17,7 @@ class Grammar {
     return {
       "id_gram": idGram,
       "num_sub_menu": numSubMenu,
-      "title": title,
+      "title_gram": titleGram,
       "subtitle_gram": subtitleGram,
       "photo_gram": photoGram,
     };
@@ -28,7 +28,7 @@ class Grammar {
   factory Grammar.fromJson(Map<String, dynamic> json) => Grammar(
               idGram: json["id_gram"],
               numSubMenu: json["num_sub_menu"],
-              title: json[ "title"],
+              titleGram: json[ "title_gram"],
               subtitleGram: json["subtitle_gram"],
               photoGram: json["photo_gram"],
   );
@@ -37,6 +37,6 @@ class Grammar {
   // each vocabularies when using the print statement.
   @override
   String toString() {
-    return '$idGram,$numSubMenu,$title,$subtitleGram,$photoGram';
+    return '$idGram,$numSubMenu,$titleGram,$subtitleGram,$photoGram';
   }
 }

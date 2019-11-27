@@ -5,7 +5,6 @@ import 'package:mianatra_alemana/src/data/dataConjugaisons.dart';
 import 'package:mianatra_alemana/src/data/dataDialogues.dart';
 import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
 import 'package:mianatra_alemana/src/views/style/text_style.dart';
-import 'package:mianatra_alemana/src/views/widgets/search.dart';
 import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
 import 'package:mianatra_alemana/src/views/widgets/DefaultScaffold.dart';
 import 'package:mianatra_alemana/src/views/widgets/DetailDialogues.dart';
@@ -57,8 +56,7 @@ class ContentVocabularies extends StatelessWidget{
   Widget build(BuildContext context) {
     List<String> mainListLanguageVocabularies = malagasyToDeutch.keys.toList()..sort();
     
-    return Search(
-      child: ListView.builder(
+    return ListView.builder(
       itemCount: mainListLanguageVocabularies.length,
       itemBuilder: (context, index){
         return ListTile(
@@ -83,8 +81,7 @@ class ContentVocabularies extends StatelessWidget{
                       leading: Icon(Icons.apps),
                       trailing: Icon(Icons.keyboard_arrow_right),
                     );
-        }),
-      );          
+        });          
      }
 }
 
@@ -92,8 +89,8 @@ class ContentConjugaison extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     List<String> mainListVerbs = mapVerbs.keys.toList()..sort();
-    return Search(
-      child: ListView.builder(
+    
+    return ListView.builder(
           itemCount: mainListVerbs.length,
           itemBuilder: (context, index){
             return ListTile(
@@ -118,8 +115,7 @@ class ContentConjugaison extends StatelessWidget{
                           leading: Icon(Icons.apps),
                           trailing: Icon(Icons.keyboard_arrow_right),
                         );
-      }),
-    );
+      });
   }
 
   Widget contentDetailConjugaisonsInGerman(Map mapVerbs){

@@ -15,7 +15,11 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
     return  Scaffold(
       
       appBar: AppBar(
+        leading: Icon(Icons.tab),
         title: Text('Mianatra Alemana'),
+        actions: <Widget>[
+                    Icon(Icons.search)
+                ],
       ),
       
       body: MainMenu(),
