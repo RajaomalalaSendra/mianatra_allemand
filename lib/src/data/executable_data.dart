@@ -6,7 +6,7 @@ List executable = [
                     photo_gram TEXT,
                     num_sub_menu INTEGER
                 );""",
-              """CREATE TABLE IF NOT EXISTS exercise(
+              """CREATE TABLE IF NOT EXISTS exercise (
                   id_exo INTEGER PRIMARY KEY AUTOINCREMENT,
                   right_answer TEXT,
                   question_exo TEXT,
@@ -30,24 +30,24 @@ List executable = [
                 future_ind TEXT
               );
               """,
-              """CREATE TABLE IF NOT EXISTS group(
-                id_group INTEGER PRIMARY KEY AUTOINCREMENT,
+              """CREATE TABLE IF NOT EXISTS group_verb (
+                id_groupe_verb INTEGER PRIMARY KEY AUTOINCREMENT,
                 group_verb TEXT,
                 group_expl TEXT
               );""",
-              """CREATE TABLE IF NOT EXISTS type(
+              """CREATE TABLE IF NOT EXISTS type (
                 id_type INTEGER PRIMARY KEY AUTOINCREMENT,
                 type_mg_short TEXT,
                 type_de_short TEXT,
                 type_mg_long TEXT,
                 type_de_long TEXT
               );""",
-              """CREATE TABLE IF NOT EXISTS dialogue(
+              """CREATE TABLE IF NOT EXISTS dialogue (
                 id_dial INTEGER PRIMARY KEY AUTOINCREMENT,
                 photo_dial TEXT,
-                text_dial TEXT DEFAULT "No text for the dialogue",
-                title_dial TEXT DEFAULT "No title for the dialogue",
-                expl_dial TEXT DEFAULT "No explanation for the dialogue for now",
+                text_dial TEXT DEFAULT 'No text for the dialogue',
+                title_dial TEXT DEFAULT 'No title for the dialogue',
+                expl_dial TEXT DEFAULT 'No explanation for the dialogue for now',
                 audio_dial TEXT,
                 video_dial TEXT
               );"""

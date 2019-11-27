@@ -32,8 +32,7 @@ class GrammarService{
         
         return await openDatabase(path, version: 1, onOpen: (db) async {
         }, onCreate: (Database db, int version) async {
-            // Create  the vocabulary and the conjugaison and the dialogue and the grammar and other tables I can create
-          
+
           for (var i = 0; i < executable.length; i++) {
             await db.execute(executable[i]);
           }
