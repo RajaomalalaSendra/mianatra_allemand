@@ -27,6 +27,8 @@ class ContentGrammar extends StatelessWidget{
         final title = _title[index];
         final content = _contentLists[index];
         final route = routeName[index];
+        final imageUrl = ["assets/images/n.png", "assets/images/a.png", "assets/images/d.png", "assets/images/g.png"];
+        final subtitle = ["Subtitle for Nominatif", "Subtitle for Accusatif", "Subtitle for Datif", "Subtitle for Genetif"];
 
         return Card(
                   child: InkWell(
@@ -40,8 +42,10 @@ class ContentGrammar extends StatelessWidget{
                             );
                         },
                       title: TextStyleForTitle(title, Colors.blue),
-                      leading: TextStyleForTitle("sample ${index+1}", Colors.red),
-                      subtitle: TextStyleForTitle("Subtitle for number ${index+1}", Colors.green),
+                      leading: CircleAvatar(
+                        backgroundImage:  AssetImage(imageUrl[index]),
+                      ),
+                      subtitle: Text(subtitle[index], style: TextStyle(color: Colors.black54, fontSize: 13.0),),
                       trailing: Icon(Icons.keyboard_arrow_right),
                     ),
                   ),
@@ -52,77 +56,74 @@ class ContentGrammar extends StatelessWidget{
 }
 
 class ContentVocabularies extends StatelessWidget{
-  
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row( children: <Widget>[
-          Expanded(
-          child: TextField(
-          decoration: InputDecoration(
-              hintText: "Search",
-              prefixIcon: Icon(Icons.search),
-            ),
-          ),
-        ),
-        Icon(
-              Icons.swap_horizontal_circle,
-              color: Colors.blue
-            ),
-        ]),
-        contentDetailVocabulariesByLanguage(malagasyToDeutch),
-      ]);
-  }
-
-  Widget contentDetailVocabulariesByLanguage(Map languageVocabularies){
-    List<Widget> listWidgetsVocabularies = new List<Widget>();
-    List<String> mainListLanguageVocabularies = languageVocabularies.keys.toList()..sort();
+    List<String> mainListLanguageVocabularies = malagasyToDeutch.keys.toList()..sort();
     
-    for (var i = 0; i < mainListLanguageVocabularies.length; i++) {
-        if(i%2==0){
-              listWidgetsVocabularies.add(
-                SimpleTextSectionVocabulary(
-                  child: Text(mainListLanguageVocabularies[i] + "  =>> " + languageVocabularies[mainListLanguageVocabularies[i]]),
-                  color: Color(0xffdbf5ff),
-                )
-              );          
-        } else {
-            listWidgetsVocabularies.add(
-              SimpleTextSectionVocabulary(
-                child: Text(mainListLanguageVocabularies[i] + "  =>> " + languageVocabularies[mainListLanguageVocabularies[i]]),
-                color: Color(0xfffff),
-              )
-            );
-        }
-    }
-    return Column(children: listWidgetsVocabularies);
-  }
-
+    return Search(
+      child: ListView.builder(
+      itemCount: mainListLanguageVocabularies.length,
+      itemBuilder: (context, index){
+        return ListTile(
+                    onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DefaultScaffold(
+                                title: Text(mainListLanguageVocabularies[index]),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text("Malagasy word: "+mainListLanguageVocabularies[index]+" means: "+malagasyToDeutch[mainListLanguageVocabularies[index]])
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              ),
+                            );
+                        },
+                      title: TextStyleForTitle(mainListLanguageVocabularies[index], Colors.blue),
+                      leading: Icon(Icons.apps),
+                      trailing: Icon(Icons.keyboard_arrow_right),
+                    );
+        }),
+      );          
+     }
 }
-
 
 class ContentConjugaison extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Row( children: <Widget>[
-          Expanded(
-          child: TextField(
-          decoration: InputDecoration(
-              hintText: "Search",
-              prefixIcon: Icon(Icons.search),
-            ),
-          ),
-        ),
-        Icon(
-              Icons.swap_horizontal_circle,
-              color: Colors.blue
-            ),
-        ]),
-        contentDetailConjugaisonsInGerman(mapVerbs),
-      ]);
+    List<String> mainListVerbs = mapVerbs.keys.toList()..sort();
+    return Search(
+      child: ListView.builder(
+          itemCount: mainListVerbs.length,
+          itemBuilder: (context, index){
+            return ListTile(
+                          onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DefaultScaffold(
+                                title: Text(mainListVerbs[index]),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text("Conjugaison of the verb: "+mainListVerbs[index]),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              ),
+                            );
+                         },
+                          title: TextStyleForTitle(mainListVerbs[index], Colors.blue),
+                          leading: Icon(Icons.apps),
+                          trailing: Icon(Icons.keyboard_arrow_right),
+                        );
+      }),
+    );
   }
 
   Widget contentDetailConjugaisonsInGerman(Map mapVerbs){
@@ -199,5 +200,70 @@ class ForLoopCard extends StatelessWidget {
                   );
                   }),
           );
+  }
+}
+
+class Search extends StatelessWidget {
+  const Search({
+    Key key,
+    this.child,
+  }) : super(key: key);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Row( children: <Widget>[
+          Expanded(
+          child: TextField(
+          decoration: InputDecoration(
+              hintText: "Search",
+              prefixIcon: Icon(Icons.search),
+            ),
+          ),
+        ),
+        FlatButton(
+          onPressed: (){
+            showDialog(
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialog(
+                    content: Container(
+                  child: 
+                  ListView(
+                      children: <Widget>[
+                        ListTile(
+                          title: Text("Malagasy to Deutch", style: TextStyle(color: Colors.blue, fontStyle: FontStyle.italic)),
+                          leading: CircleAvatar(
+                                backgroundImage:  AssetImage("assets/images/mgde.png"),
+                          ),
+                        ),
+                        ListTile(
+                          title: Text("Deutch to Malagasy", style: TextStyle(color: Colors.blue, fontStyle: FontStyle.italic)),
+                          leading: CircleAvatar(
+                                backgroundImage:  AssetImage("assets/images/demg.png"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  width: 8.0,
+                  height: 100.0,
+                  ),
+                );
+              },
+              );
+            },
+            child: Icon(
+              Icons.swap_horizontal_circle,
+              color: Colors.blue
+            ),
+           ),
+        ]),
+        Expanded(
+          child: child,
+        )
+      ]);
   }
 }
