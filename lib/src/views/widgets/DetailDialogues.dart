@@ -18,19 +18,21 @@ class DetailDialogue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-    Widget detailDialogue = new Text("");
 
-    detailDialogue = Column(children: <Widget>[
-        Image(image: image, width: 140.0, height: 70.0),
-        VeryDetailDialogue(mapContent: mapContentDialogue["dialogues"]),
-        VocabularyToRemember(mapContent: mapContentDialogue["vocabularies"]),
-        FooterDetailDialogue(),
-    ]);
-    
-    return detailDialogue;
+       return Stack(
+           children: <Widget>[
+             Container(
+               child: Column(
+               children: <Widget>[
+                  Image(image: image, width: 140.0, height: 70.0),
+                  VeryDetailDialogue(mapContent: mapContentDialogue["dialogues"]),
+                  VocabularyToRemember(mapContent: mapContentDialogue["vocabularies"]),
+                  FooterDetailDialogue(),
+               ],
+              ),
+             ),
+           ]);
   }
-  
 }
 
 class VocabularyToRemember extends StatelessWidget {

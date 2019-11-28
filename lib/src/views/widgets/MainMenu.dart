@@ -46,11 +46,11 @@ class MainMenu extends StatelessWidget{
             child: Scaffold(
                 appBar: this.appBarByTitle(),
                 body: TabBarView(
-                          children: [
-                            this.createTab(ContentGrammar(titlesCases, columnsTitle, contentLists, examplesByCases, titlesCases)),
+                          children: <Widget>[
+                            ContentGrammar(titlesCases, columnsTitle, contentLists, examplesByCases, titlesCases),
                             this.createTab(ContentVocabularies()),
                             this.createTab(ContentConjugaison()),
-                            this.createTab(ContentDialogues()),
+                            ContentDialogues(),
                           ],
                         ),
                     ),

@@ -149,14 +149,12 @@ class HomeMadeCardDialogue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    return Card(
-              child: Container(
-                child: Column(children: <Widget>[
+    return Center(
+              child: Column(children: <Widget>[
                   image,
                   text,
-                ],)
-              )
-            );
+                ]),
+              );
   }
   
 }

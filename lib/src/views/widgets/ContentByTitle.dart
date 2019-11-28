@@ -21,74 +21,32 @@ class ContentGrammar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaNominatif = new ExtractArgumentsScreenMianatraAlemana(_title[0], _columnsTitle, _contentLists[0], _examplesByCase, routeName[0]);
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaAccusatif = new ExtractArgumentsScreenMianatraAlemana(_title[1], _columnsTitle, _contentLists[1], _examplesByCase, routeName[1]);
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaDatif = new ExtractArgumentsScreenMianatraAlemana(_title[2], _columnsTitle, _contentLists[2], _examplesByCase, routeName[2]);
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemanaGenetif = new ExtractArgumentsScreenMianatraAlemana(_title[3], _columnsTitle, _contentLists[3], _examplesByCase, routeName[3]);
+    return ListView.builder(
+      itemCount: _title.length,
+      itemBuilder: (context, index){
+        final title = _title[index];
+        final content = _contentLists[index];
+        final route = routeName[index];
 
-    return Column(
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            FlatButton(
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => mianatraAlemanaNominatif,
+        return Card(
+                  child: InkWell(
+                    child: ListTile(
+                      onTap: (){
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ExtractArgumentsScreenMianatraAlemana(title, _columnsTitle, content, _examplesByCase, route),
+                              ),
+                            );
+                        },
+                      title: TextStyleForTitle(title, Colors.blue),
+                      leading: TextStyleForTitle("sample ${index+1}", Colors.red),
+                      subtitle: TextStyleForTitle("Subtitle for number ${index+1}", Colors.green),
+                      trailing: Icon(Icons.keyboard_arrow_right),
                     ),
-                  );
-              },
-              child: TextStyleForTitle("Nominatif", Colors.blue),
-            ),
-          ],
-        ),
-        Row(
-          children: <Widget>[
-            FlatButton(
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => mianatraAlemanaAccusatif,
-                    ),
-                  );
-              },
-              child:  TextStyleForTitle("Accusatif", Colors.blue),
-            )
-          ],
-        ),
-        Row(
-            children: <Widget>[
-            FlatButton(
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => mianatraAlemanaDatif,
-                    ),
-                  );
-              },
-              child:  TextStyleForTitle("Datif", Colors.blue),
-            )
-          ],
-        ),
-        Row(
-            children: <Widget>[
-            FlatButton(
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => mianatraAlemanaGenetif,
-                    ),
-                  );
-              },
-              child:  TextStyleForTitle("Genetif", Colors.blue),
-            )
-          ],
-        ),
-      ],
+                  ),
+                );
+      }
     );
   }
 }
@@ -210,52 +168,36 @@ class ForLoopCard extends StatelessWidget {
   
   @override 
   Widget build(BuildContext context){
-    List<Widget> card = new List<Widget>();
     AssetImage image = AssetImage('assets/icon/icon.png');
     List<String> listkeydialogues = dialogues.keys.toList();
     
-    for (var i = 0; i < dialogues.length; i++) {
-      if(i+1%2!=0 && i%2==0){
-            card.add(
-              Row(children: <Widget>[
-                FlatButton(
-                onPressed: (){
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DefaultScaffold(
-                          title: Text("Dialogue ${i+1}"),
-                          child: Column(
-                          children: <Widget>[
-                            DetailDialogue(image: AssetImage(dialogues[listkeydialogues[i]]["image"]), mapContentDialogue: dialogues[listkeydialogues[i]]),
-                          ],
-                        ),),
-                      ),
-                    );
-                },
-              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(listkeydialogues[i]),),
-            ),
-            FlatButton(
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DefaultScaffold(
-                        title: Text("Dialogue ${i+2}"),
-                        child: Column(
-                        children: <Widget>[
-                          DetailDialogue(image: AssetImage(dialogues[listkeydialogues[i+1]]["image"]), mapContentDialogue: dialogues[listkeydialogues[i+1]]),
-                        ],
-                      ),),
+    return GridView.count(
+              crossAxisCount: 2,
+              children: List.generate(dialogues.length, (index){
+                  return Card(
+                    child: FlatButton(
+                      onPressed: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DefaultScaffold(
+                                title: Text("Dialogue ${index+1}"),
+                                child: SingleChildScrollView(
+                                  child: DetailDialogue(image: AssetImage(dialogues[listkeydialogues[index]]["image"]), mapContentDialogue: dialogues[listkeydialogues[index]]),
+                                ),
+                              ),
+                            ),
+                          );
+                      },
+                    child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(listkeydialogues[index]),),
                     ),
+                    shape: RoundedRectangleBorder(
+                           borderRadius: BorderRadius.all(Radius.circular(0.0)),
+                    ),
+                    elevation: 7.0,
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
                   );
-              },
-              child: HomeMadeCardDialogue(image: Image(image: image, width: 140.0, height: 70.0), text: Text(listkeydialogues[i+1]),),
-            ),
-          ]),
+                  }),
           );
-        }
-      }
-      return Column(children: card);
-    }
+  }
 }

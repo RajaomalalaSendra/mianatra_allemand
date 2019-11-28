@@ -4,11 +4,23 @@ var dialogues = {
     "dialogues": {
       "deutch": [
         "Was machen sie heute.",
-        "Hast du eine freunde."
+        "Hast du eine freunde.",
+        "Du bist hiere heute",
+        "Du bist hiere heute",
+        "Du bist hiere heute",
+        "Du bist hiere heute",
+        "Du bist hiere heute",
+        "Du bist hiere heute",
       ],
       "malagasy": [
         "Inona no ataonao eto",
-        "Manana namana ianao"
+        "Manana namana ianao",
+        "Izy irery no eto izao anio izao",
+        "Ianareo no eto ihany koa",
+        "Isika rehetra no eto",
+        "Izy ireo no tsy eto izao",
+        "Ianareo avao no tsy eto",
+        "Efa eto daholo ve oh!!"
       ]
     },
     "vocabularies": {

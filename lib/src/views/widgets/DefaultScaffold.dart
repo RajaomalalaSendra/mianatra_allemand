@@ -14,17 +14,12 @@ class DefaultScaffold extends StatelessWidget {
 
  @override
   Widget build(BuildContext context) {
-    Widget defaultScaffold = Text("");
-    
-    if(length==1){
-      defaultScaffold = Scaffold(
+   
+   return Scaffold(
               appBar: AppBar(
                 title:title,
               ),
               body: child,
       );
     }
-
-    return defaultScaffold;
-  }
 }

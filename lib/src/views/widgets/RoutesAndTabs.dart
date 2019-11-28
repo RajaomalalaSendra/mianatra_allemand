@@ -179,6 +179,7 @@ class TabBarMianatraAlemana extends StatelessWidget {
   }
 
   Widget createTab(Widget content){
+    
       return SingleChildScrollView(
                   child: Container(
                     child: Column(
