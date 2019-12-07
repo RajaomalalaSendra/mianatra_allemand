@@ -10,7 +10,7 @@ class DefaultScaffold extends StatelessWidget {
     this.length = 1,
   }) : super(key: key);
 
-  final Text title;
+  final Widget title;
   final Widget child;
   final Widget leading;
   final double widthLeading;

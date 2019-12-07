@@ -16,23 +16,81 @@ class _MianatraAlemanaHomePageState extends State<MianatraAlemanaHomePage> {
     return  Scaffold(
       
       appBar: AppBar(
-        leading: Icon(Icons.tab),
+        leading: PopupMenuButton(
+                    itemBuilder: (BuildContext context){
+                      return [
+                        PopupMenuItem(
+                          child: FlatButton(
+                            child: Text("Test is here"),
+                            onPressed: (){
+                              clicked(context, "Email send really");
+                            }
+                          )
+                        ),
+                        PopupMenuItem(
+                          child: FlatButton(
+                            child: Text("Test is here"),
+                            onPressed: (){
+                              clicked(context, "Email send really");
+                            }
+                          )
+                        ),
+                      ];
+                    },
+                    child: Icon(Icons.menu, color: Colors.white,)
+                  ),
         title: Text('Mianatra Alemana'),
         actions: <Widget>[
-                  FlatButton(
-                    onPressed:  (){
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => NavigateToMainSearch(),
-                        ),
-                      );
+                  IconButton(
+                    onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>  NavigateToMainSearch(),
+                          ),
+                        );
                     },
-                    child: Icon(Icons.search, color: Colors.white),
+                    icon: Icon(Icons.search, color: Colors.white),
+                  ),
+                  PopupMenuButton(
+                    itemBuilder: (BuildContext context){
+                      return [
+                        PopupMenuItem(
+                          child: FlatButton(
+                            child: Text("Test is here"),
+                            onPressed: (){
+                              clicked(context, "Email send really");
+                            }
+                          )
+                        ),
+                        PopupMenuItem(
+                          child: FlatButton(
+                            child: Text("Test is here"),
+                            onPressed: (){
+                              clicked(context, "Email send really");
+                            }
+                          )
+                        ),
+                      ];
+                    },
                   ),
                 ],
       ),
       
       body: MainMenu(),
+    );
+  }
+
+  void clicked(BuildContext context, menu){
+    final scaffold = Scaffold.of(context);
+
+    scaffold.showSnackBar(
+      SnackBar(
+      content: Text(menu),
+      action: SnackBarAction(
+        label: "Undo",
+        onPressed: scaffold.hideCurrentSnackBar,)
+      ),
     );
   }
 }
