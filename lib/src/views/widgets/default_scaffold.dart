@@ -5,11 +5,15 @@ class DefaultScaffold extends StatelessWidget {
     Key key,
     this.title,
     this.child,
+    this.leading,
+    this.widthLeading,
     this.length = 1,
   }) : super(key: key);
 
   final Text title;
   final Widget child;
+  final Widget leading;
+  final double widthLeading;
   final int length;
 
  @override
@@ -17,7 +21,11 @@ class DefaultScaffold extends StatelessWidget {
    
    return Scaffold(
               appBar: AppBar(
-                title:title,
+                title: title,
+                leading: Container(
+                  child: leading,
+                  width: widthLeading,
+                )
               ),
               body: child,
       );

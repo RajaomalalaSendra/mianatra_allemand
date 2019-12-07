@@ -27,11 +27,12 @@ List executable = [
                 present_ind TEXT,
                 participe TEXT,
                 past_ind TEXT,
-                future_ind TEXT
+                future_ind TEXT,
+                id_group_verb INTEGER
               );
               """,
               """CREATE TABLE IF NOT EXISTS group_verb (
-                id_groupe_verb INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_group_verb INTEGER PRIMARY KEY AUTOINCREMENT,
                 group_verb TEXT,
                 group_expl TEXT
               );""",
@@ -53,3 +54,93 @@ List executable = [
                 video_dial TEXT
               );"""
             ];
+
+var dataConjugaisons = [
+  {"verb": "essen", "present_ind": "Ich esse", "participe": "gessen", "past_ind": "Ich esse", "future_ind": "Ich esse", "id_group_verb": 1},
+  {"verb": "essen", "present_ind": "Ich esse", "participe": "gessen", "past_ind": "Ich esse", "future_ind": "Ich esse", "id_group_verb": 1},
+  {"verb": "essen", "present_ind": "Ich esse", "participe": "gessen", "past_ind": "Ich esse", "future_ind": "Ich esse", "id_group_verb": 2},
+  {"verb": "essen", "present_ind": "Ich esse", "participe": "gessen", "past_ind": "Ich esse", "future_ind": "Ich esse", "id_group_verb": 2}
+];
+
+var dataGroupVerbs = [
+  {"group_verb":"Group of verb This", "group_expl":"This is the verb explanation fro now and then"},
+  {"group_verb":"Group of verb This", "group_expl":"This is the verb explanation fro now and then"},
+  {"group_verb":"Group of verb This", "group_expl":"This is the verb explanation fro now and then"},
+  {"group_verb":"Group of verb This", "group_expl":"This is the verb explanation fro now and then"},
+  {"group_verb":"Group of verb This", "group_expl":"This is the verb explanation fro now and then"}
+];
+
+var listGrammars = [
+    { "imageUrl": "assets/images/n.png", "subtitle": "Subtitle for Nominatif", "title": "Nominatif", "numSubMenu": 2},
+    {"imageUrl": "assets/images/a.png", "subtitle": "Subtitle for Accusatif", "title": "Accusatif", "numSubMenu": 2},
+    {"imageUrl": "assets/images/d.png", "subtitle": "Subtitle for Datif", "title": "Datif", "numSubMenu": 2},
+    {"imageUrl": "assets/images/g.png", "subtitle": "Subtitle for Genetif", "title": "Genetif", "numSubMenu": 2}
+];
+
+var contentDialogues = [
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'},
+  {'photo_dial': 'assets/icon/icon.png', 'text_dial_de': 'Was machen sie hier fur heute', 'text_dial_mg': 'dialogue amin\'ny fiteny malagasy.', 'title_dial': 'dialogue 1', 'expl_dial': 'Das is die cultural fur die deutchland', 'audio_dial': 'audio for the apps', 'video_dial': 'no video for the dial 1'}
+];
+
+
+var listVocabularies = [
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1}
+];

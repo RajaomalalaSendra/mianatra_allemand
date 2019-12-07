@@ -6,7 +6,7 @@ import 'package:mianatra_alemana/src/data/dataDialogues.dart';
 import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
 import 'package:mianatra_alemana/src/views/style/text_style.dart';
 import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
-import 'package:mianatra_alemana/src/views/widgets/DefaultScaffold.dart';
+import 'package:mianatra_alemana/src/views/widgets/default_scaffold.dart';
 import 'package:mianatra_alemana/src/views/widgets/DetailDialogues.dart';
 
 class ContentGrammar extends StatelessWidget{

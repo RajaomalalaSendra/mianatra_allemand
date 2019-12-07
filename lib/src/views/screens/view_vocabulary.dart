@@ -63,7 +63,8 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
             appBar: AppBar(
                 title: Text(widget.vocabulary.wordDe.toString() + "..." + widget.vocabulary.wordMg.toString()),
             ),
-            body: Container(
+            body: SingleChildScrollView(
+              child: Container(
                 child: Column(
                   children: <Widget>[
                     Text(widget.vocabulary.wordDe.toString()),
@@ -74,6 +75,7 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
                     Text(widget.vocabulary.idVoc.toString()),
                   ],
                 ),
+              ),
             ),
         );
     }

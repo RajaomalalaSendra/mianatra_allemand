@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/blocs/bloc_provider.dart';
-import 'package:mianatra_alemana/src/blocs/vocabularies_bloc.dart';
-import 'package:mianatra_alemana/src/blocs/view_vocabulary_bloc.dart';
-import 'package:mianatra_alemana/src/models/vocabulary_model.dart';
-import 'package:mianatra_alemana/src/views/screens/view_vocabulary.dart';
+import 'package:mianatra_alemana/src/blocs/conjugaisons_bloc.dart';
+import 'package:mianatra_alemana/src/blocs/view_conjugaison_bloc.dart';
+import 'package:mianatra_alemana/src/models/conjugaison_model.dart';
+import 'package:mianatra_alemana/src/views/screens/view_conjugaison.dart';
 import 'package:mianatra_alemana/src/data/executable_data.dart';
-import 'package:mianatra_alemana/src/views/widgets/search.dart';
 import 'package:mianatra_alemana/src/views/style/text_style.dart';
 
 
-class MainVocabulariesPage extends StatelessWidget {
+class MainConjugaisonsPage extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
         return BlocProvider(
-                bloc: VocabulariesBloc(),
-                child: VocabulariesPage(),
+                bloc: ConjugaisonsBloc(),
+                child: ConjugaisonsPage(),
         );
     }
 }
 
-class VocabulariesPage extends StatefulWidget {
-    VocabulariesPage({
+class ConjugaisonsPage extends StatefulWidget {
+    ConjugaisonsPage({
         Key key,
     }) : super(key: key);
 
     @override
-    _VocabulariesPageState createState() => _VocabulariesPageState();
+    _ConjugaisonsPageState createState() => _ConjugaisonsPageState();
 }
 
-class _VocabulariesPageState extends State<VocabulariesPage> {
-    VocabulariesBloc _vocabulariesBloc;
+class _ConjugaisonsPageState extends State<ConjugaisonsPage> {
+    ConjugaisonsBloc _conjugaisonsBloc;
 
     @override
     void initState() {
@@ -37,10 +36,10 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
 
         // Thanks to the BlocProvider providing this page with the NotesBloc,
         // we can simply use this to retrieve it.
-        _vocabulariesBloc = BlocProvider.of<VocabulariesBloc>(context);
+        _conjugaisonsBloc = BlocProvider.of<ConjugaisonsBloc>(context);
     }
 
-    void _navigateToVocabulary(Vocabulary vocabulary) async {
+    void _navigateToConjugaison(Conjugaison conjugaison) async {
         // Push ViewNotePage, and store any return value in update. This will
         // be used to tell this page to update the note stream after a note is deleted.
         // If a note isn't deleted, this will be set to null and the note stream will
@@ -50,9 +49,9 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
                 // Once again, use the BlocProvider to pass the ViewNoteBloc
                 // to the ViewNotePage
                 builder: (context) => BlocProvider(
-                    bloc: ViewVocabularyBloc(),
-                    child: ViewVocabularyPage(
-                        vocabulary: vocabulary,
+                    bloc: ViewConjugaisonBloc(),
+                    child: ViewConjugaisonPage(
+                        conjugaison: conjugaison,
                     ),
                 ),
             ),
@@ -60,7 +59,7 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
 
         // If update was set, get all the notes again, updating the stream
         if (update != null) {
-            _vocabulariesBloc.getVocabularies();
+            _conjugaisonsBloc.getConjugaisons();
         }
     }
 
@@ -75,34 +74,32 @@ class _VocabulariesPageState extends State<VocabulariesPage> {
                             // The StreamBuilder allows us to make use of our streams and display
                             // that data on our page. It automatically updates when the stream updates.
                             // Whenever you want to display stream data, you'll use the StreamBuilder.
-                            child: StreamBuilder<List<Vocabulary>>(
-                                stream: _vocabulariesBloc.vocabularies,
-                                builder: (BuildContext context, AsyncSnapshot<List<Vocabulary>> snapshot) {
+                            child: StreamBuilder<List<Conjugaison>>(
+                                stream: _conjugaisonsBloc.conjugaisons,
+                                builder: (BuildContext context, AsyncSnapshot<List<Conjugaison>> snapshot) {
                                     // Make sure data exists and is actually loaded
                                     if (snapshot.hasData) {
                                         // If there are no notes (data), display this message.
                                         if (snapshot.data.length == 0) {
-                                            return Text('No vocabularies');
+                                            return Text('No conjugaisons');
                                         }
 
-                                        List<Vocabulary> vocabularies = snapshot.data;
+                                        List<Conjugaison> conjugaisons = snapshot.data;
 
-                                        return Search( 
-                                          child: ListView.builder(
+                                        return ListView.builder(
                                             itemCount: snapshot.data.length,
                                             itemBuilder: (BuildContext context, int index) {
-                                                Vocabulary vocabulary = vocabularies[index];
+                                                Conjugaison conjugaison = conjugaisons[index];
 
                                                 return ListTile(
                                                   onTap: () {
-                                                      _navigateToVocabulary(vocabulary);
+                                                      _navigateToConjugaison(conjugaison);
                                                   },
-                                                  title: TextStyleForTitle(listVocabularies[index]["mg"], Colors.blue),
+                                                  title: TextStyleForTitle(dataConjugaisons[index]["verb"], Colors.blue),
                                                   leading: Icon(Icons.apps),
                                                   trailing: Icon(Icons.keyboard_arrow_right),
                                                 );
-                                            }),
-                                          );
+                                            });
                                     }
 
 

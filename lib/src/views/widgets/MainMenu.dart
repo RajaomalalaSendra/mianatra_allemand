@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/pages/dialogues_page.dart';
 import 'package:mianatra_alemana/src/views/pages/vocabularies_page.dart';
-import 'package:mianatra_alemana/src/views/widgets/ContentByTitle.dart';
 import 'package:mianatra_alemana/src/views/pages/grammars_page.dart';
-
+import 'package:mianatra_alemana/src/views/pages/conjugaisons_page.dart';
 
 class MainMenu extends StatelessWidget{
   @override
@@ -16,7 +15,7 @@ class MainMenu extends StatelessWidget{
                           children: <Widget>[
                             MainGramarsPage(),
                             MainVocabulariesPage(),
-                            ContentConjugaison(),
+                            MainConjugaisonsPage(),
                             MainDialoguesPage(),
                           ],
                         ),
@@ -39,20 +38,6 @@ class MainMenu extends StatelessWidget{
                       text: "Dialogues"),
                     ],
                 ),
-              );
-  }
-
-  Widget createTab(Widget content){
-    return SingleChildScrollView(
-                  child: Container(
-                    child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                          content,
-                      ],
-                    ),
-                  ),
               );
   }
 }

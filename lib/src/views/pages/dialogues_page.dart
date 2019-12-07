@@ -49,7 +49,7 @@ class _DialoguesPageState extends State<DialoguesPage> {
                 // to the ViewNotePage
                 builder: (context) => BlocProvider(
                     bloc: ViewDialogueBloc(),
-                    child: ViewDialoguePage(
+                      child: ViewDialoguePage(
                         dialogue: dialogue,
                     ),
                 ),

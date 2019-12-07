@@ -26,7 +26,8 @@ class _ViewDialoguePageState extends State<ViewDialoguePage> {
             appBar: AppBar(
                 title: Text(widget.dialogue.idDialogue.toString() + "..." + widget.dialogue.titleDialogue.toUpperCase()),
             ),
-            body: Container(
+            body: SingleChildScrollView(
+              child: Container(
                 child: Column(
                   children: <Widget>[
                     Image(image: AssetImage(widget.dialogue.photoDialogue.toString()),),
@@ -38,6 +39,7 @@ class _ViewDialoguePageState extends State<ViewDialoguePage> {
                     Text(widget.dialogue.videoDialogue.toString()),
                   ],
                 ),
+              ),
             ),
         );
     }

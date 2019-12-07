@@ -14,13 +14,3 @@ var malagasyToDeutch = {
   'omaly': 'gestern',
   'rahampitso': 'morgen'
 };
-
-var listVocabularies = [
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1}
-];
