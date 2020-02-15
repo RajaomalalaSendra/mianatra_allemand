@@ -136,11 +136,11 @@ var contentDialogues = [
 
 
 var listVocabularies = [
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen\nohatra hoe: ich esse. Mihinana aho.", "typ":1},
   {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
   {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
   {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
   {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
-  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1},
+  {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen\nohatra hoe: ich esse. Mihinana aho.", "typ":1},
   {"de":"essen", "mg":"mihinana", "exp_de":"essen ist mihinana", "exp_mg":"mihinana dia essen", "typ":1}
 ];

@@ -61,22 +61,31 @@ class _ViewVocabularyPageState extends State<ViewVocabularyPage> {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: Text(widget.vocabulary.wordDe.toString() + "..." + widget.vocabulary.wordMg.toString()),
+                title: Text(widget.vocabulary.wordMg.toString()),
             ),
             body: SingleChildScrollView(
               child: Container(
-                child: Column(
-                  children: <Widget>[
-                    Text(widget.vocabulary.wordDe.toString()),
-                    Text(widget.vocabulary.wordMg.toString()),
-                    Text(widget.vocabulary.explDe.toString()),
-                    Text(widget.vocabulary.explMg.toString()),
-                    Text(widget.vocabulary.idType.toString()),
-                    Text(widget.vocabulary.idVoc.toString()),
+                child: Center(
+                      child: Column(
+                        children: <Widget>[
+                            Text(
+                              widget.vocabulary.wordMg.toString(),
+                              style: TextStyle(fontSize: 40, color: Colors.blue),
+                            ),
+                            Container(
+                              child: Text(
+                                widget.vocabulary.explMg.toString(),
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.blue
+                              )
+                            ),
                   ],
                 ),
               ),
             ),
+          ),
         );
     }
 }

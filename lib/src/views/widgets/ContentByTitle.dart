@@ -103,7 +103,7 @@ class ContentConjugaison extends StatelessWidget{
                                 child: SingleChildScrollView(
                                   child: Column(
                                     children: <Widget>[
-                                      Text("Conjugaison of the verb: "+mainListVerbs[index]),
+                                      Text("Conjugaison of the verb: " + mainListVerbs[index]),
                                     ],
                                   ),
                                 ),
