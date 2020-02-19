@@ -11,24 +11,19 @@ import 'package:mianatra_alemana/src/views/widgets/DetailDialogues.dart';
 
 class ContentGrammar extends StatelessWidget{
 
-  final List _title;
-  final List _columnsTitle;
-  final  _contentLists;
-  final Map _examplesByCase;
-  final List routeName;
+  final  Map _contentMaps;
 
-  ContentGrammar(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
+  ContentGrammar(this._contentMaps);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: _title.length,
+      itemCount: _contentMaps["TitlesCases"].length,
       itemBuilder: (context, index){
-        final title = _title[index];
-        final content = _contentLists[index];
-        final route = routeName[index];
-        final imageUrl = ["assets/images/n.png", "assets/images/a.png", "assets/images/d.png", "assets/images/g.png"];
-        final subtitle = ["Subtitle for Nominatif", "Subtitle for Accusatif", "Subtitle for Datif", "Subtitle for Genetif"];
+        final String title = _contentMaps["TitlesCases"][index];
+        final Map content = _contentMaps; 
+        final List imageUrl = _contentMaps["imageUrl"];
+        final List subtitle = _contentMaps["subtitle"];
 
         return Card(
                   child: InkWell(
@@ -37,7 +32,7 @@ class ContentGrammar extends StatelessWidget{
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ExtractArgumentsScreenMianatraAlemana(title, _columnsTitle, content, _examplesByCase, route),
+                                builder: (context) => ExtractArgumentsScreenMianatraAlemana(title, content),
                               ),
                             );
                         },
@@ -249,7 +244,7 @@ class Search extends StatelessWidget {
                       ],
                     ),
                   width: 8.0,
-                  height: 100.0,
+                  height: 115.0,
                   ),
                 );
               },

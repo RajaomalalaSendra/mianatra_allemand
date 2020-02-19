@@ -1,53 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/RowsAndColumns.dart';
-import 'package:mianatra_alemana/src/views/widgets/SizeBox.dart';
-import 'package:mianatra_alemana/src/data/dataCases.dart';
 
 class TabBarMianatraAlemana extends StatelessWidget {
-  final  String _title;
-  final List _columnsTitle;
-  final _contentLists;
-  final Map _examplesByCase;
+  final Map _contentMaps;
+  final String _title;
 
-  TabBarMianatraAlemana(this._title, this._columnsTitle, this._contentLists, this._examplesByCase);
+  TabBarMianatraAlemana(this._title, this._contentMaps);
 
 
  @override
   Widget build(BuildContext context) {
     return   DefaultTabController(
-          length: 3,
+          length: 2,
           child: Scaffold(
               appBar: this.appBarByCase(),
               body: TabBarView(
                         children: [
-                          this.createTab(this.createCases(_contentLists)),
-                          this.createTab(this.createExamplesByCase(_examplesByCase)),
-                          this.createTab(TextInputByCase(_title)),
+                          createTab(createCases()),
+                          createTab(TextInputByCase(_title)),
                         ],
                       ),
                   ),
     );
   }
 
-  Widget createCases(var contentLists){
+  Widget createCases(){
     MianatraAlemanaRowsAndColumns alemanaRows = new MianatraAlemanaRowsAndColumns();
+    List columnsTitle = _contentMaps["ColumnsTitle"];
+    Map contentLists = _contentMaps["Deutch"][_title]["contentLists"];
     if(_title == "Nominatif"){
       Widget cases = Column(
         children: [
             TextSection("1/ Famaritana", "- Ny fameno rehefa ao arinanan'ny matoanteny \"sein\" dia ampiasaina ny \"Nominatif\""),
             SimpleTextSection("- Ny teny rehetra rehefa entimilaza dia ampiasaina ny \"Nominatif\""),
 
-            alemanaRows.twoColumns("2/ Famintinana", _columnsTitle),
+            alemanaRows.twoColumns("2/ Famintinana", columnsTitle),
             alemanaRows.contentColumn(contentLists["definit"]),
             alemanaRows.contentColumn(contentLists["indefinit"]),
             alemanaRows.contentColumn(contentLists["negation"]),
+
+            TextSection("Ohatra Voalohany", _contentMaps["Deutch"][_title]["one"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"][_title]["one"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"][_title]["one"], _contentMaps["Malagasy"][_title]["one"]),
            
            
             TextSection("3/ Nominatif miaraka amin'ny adjectif", "-  Ny adjectif ihany koa rehefa eo alohan'ny teny \nanankiray dia manaraka ny genre sy ny isany"),
             SimpleTextSection("Sahala amin'izao no fampiasana azy:\n article + adjectif miafara amin'ilay genre ny article + anarana iombonana."),
 
-            alemanaRows.twoColumns("2/ Teny Miafara ao anatin'ny adjectif", _columnsTitle),
+            alemanaRows.twoColumns("2/ Teny Miafara ao anatin'ny adjectif", columnsTitle),
             alemanaRows.contentColumn(["r na er", "e", "es", "e"]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", _contentMaps["Deutch"]["Nominatif"]["two"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"]["Nominatif"]["two"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"]["Nominatif"]["two"], _contentMaps["Malagasy"]["Nominatif"]["two"]),
+
           ]
       );
         return cases;
@@ -56,10 +62,18 @@ class TabBarMianatraAlemana extends StatelessWidget {
         children: [
             TextSection("1/ Famaritana", "- Ny fameno rehetra ao arinanan'ny matoanteny ankoatran'ny \"sein\" dia ampiasaina ny \"Accusatif\""),
             
-            alemanaRows.twoColumns("2/ Famintinana", _columnsTitle),
+            alemanaRows.twoColumns("2/ Famintinana", columnsTitle),
             alemanaRows.contentColumn(contentLists["definit"]),
             alemanaRows.contentColumn(contentLists["indefinit"]),
             alemanaRows.contentColumn(contentLists["negation"]),
+
+            TextSection("Ohatra Voalohany", _contentMaps["Deutch"]["Accusatif"]["one"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"]["Accusatif"]["one"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"]["Accusatif"]["one"], _contentMaps["Malagasy"]["Accusatif"]["one"]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", _contentMaps["Deutch"]["Accusatif"]["two"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"]["Accusatif"]["two"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"]["Accusatif"]["two"], _contentMaps["Malagasy"]["Accusatif"]["two"]),
           ]
       );
 
@@ -69,10 +83,18 @@ class TabBarMianatraAlemana extends StatelessWidget {
         children: [
             TextSection("1/ Famaritana", "- Ny fameno rehetra ao arinanan'ny matoanteny ankoatran'ny \"sein\" dia ampiasaina ny \"Accusatif\""),
             
-            alemanaRows.twoColumns("2/ Famintinana", _columnsTitle),
+            alemanaRows.twoColumns("2/ Famintinana", columnsTitle),
             alemanaRows.contentColumn(contentLists["definit"]),
             alemanaRows.contentColumn(contentLists["indefinit"]),
             alemanaRows.contentColumn(contentLists["negation"]),
+
+            TextSection("Ohatra Voalohany", _contentMaps["Deutch"]["Datif"]["one"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"]["Datif"]["one"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"]["Datif"]["one"], _contentMaps["Malagasy"]["Datif"]["one"]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", _contentMaps["Deutch"]["Datif"]["two"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"]["Datif"]["two"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"]["Datif"]["two"], _contentMaps["Malagasy"]["Datif"]["two"]),
           ],
       );
 
@@ -82,10 +104,18 @@ class TabBarMianatraAlemana extends StatelessWidget {
         children: [
             TextSection("1/ Famaritana", "- Ny fameno rehetra ao arinanan'ny matoanteny ankoatran'ny \"sein\" dia ampiasaina ny \"Accusatif\""),
             
-            alemanaRows.twoColumns("2/ Famintinana", _columnsTitle),
+            alemanaRows.twoColumns("2/ Famintinana", columnsTitle),
             alemanaRows.contentColumn(contentLists["definit"]),
             alemanaRows.contentColumn(contentLists["indefinit"]),
             alemanaRows.contentColumn(contentLists["negation"]),
+
+            TextSection("Ohatra Voalohany", _contentMaps["Deutch"]["Genetif"]["one"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"]["Genetif"]["one"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"]["Genetif"]["one"], _contentMaps["Malagasy"]["Genetif"]["one"]),
+
+            TextSection("Ohatra faharoa miaraka amin'ny adjectif", _contentMaps["Deutch"]["Genetif"]["two"][0]),
+            SimpleTextSection(">> " + _contentMaps["Malagasy"]["Genetif"]["two"][0]),
+            contentDetailExampleCases(_contentMaps["Deutch"]["Genetif"]["two"], _contentMaps["Malagasy"]["Genetif"]["two"]),
           ],
       );
 
@@ -100,70 +130,11 @@ class TabBarMianatraAlemana extends StatelessWidget {
                   tabs: [
                       Tab(icon: Icon(Icons.library_books),
                       text: "Lesona"),
-                      Tab(icon: Icon(Icons.book),
-                      text: "Ohatra"),
                       Tab(icon: Icon(Icons.border_color),
                       text: "Fampiharana"),
                     ],
                 ),
               );
-  }
-
-  Widget createExamplesByCase(Map examplesByCase){
-    /// create example by case
-    /// And you can check the documentation here
-    Widget column = Column(); 
-
-    if(_title == "Nominatif"){
-      column = Column(
-        children:[
-            TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Nominatif"]["one"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["one"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["one"], examplesByCase["Malagasy"]["Nominatif"]["one"]),
-
-            TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Nominatif"]["two"][0]),
-            SimpleTextSection(">> " + examplesByCase["Malagasy"]["Nominatif"]["two"][0]),
-            contentDetailExampleCases(examplesByCase["Deutch"]["Nominatif"]["two"], examplesByCase["Malagasy"]["Nominatif"]["two"]),
-        ],
-    );
-    } else if(_title == "Accusatif"){
-      column = Column(
-            children:[
-              TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Accusatif"]["one"][0]),
-              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Accusatif"]["one"][0]),
-              contentDetailExampleCases(examplesByCase["Deutch"]["Accusatif"]["one"], examplesByCase["Malagasy"]["Accusatif"]["one"]),
-
-              TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Accusatif"]["two"][0]),
-              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Accusatif"]["two"][0]),
-              contentDetailExampleCases(examplesByCase["Deutch"]["Accusatif"]["two"], examplesByCase["Malagasy"]["Accusatif"]["two"]),
-            ],
-        );
-    } else if(_title == "Datif"){
-      column = Column(
-        children:[
-              TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Datif"]["one"][0]),
-              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Datif"]["one"][0]),
-              contentDetailExampleCases(examplesByCase["Deutch"]["Datif"]["one"], examplesByCase["Malagasy"]["Datif"]["one"]),
-
-              TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Datif"]["two"][0]),
-              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Datif"]["two"][0]),
-              contentDetailExampleCases(examplesByCase["Deutch"]["Datif"]["two"], examplesByCase["Malagasy"]["Datif"]["two"]),
-        ],
-    );
-    } else {
-      column = Column(
-        children:[
-              TextSection("Ohatra Voalohany", examplesByCase["Deutch"]["Genetif"]["one"][0]),
-              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Genetif"]["one"][0]),
-              contentDetailExampleCases(examplesByCase["Deutch"]["Genetif"]["one"], examplesByCase["Malagasy"]["Genetif"]["one"]),
-
-              TextSection("Ohatra faharoa miaraka amin'ny adjectif", examplesByCase["Deutch"]["Genetif"]["two"][0]),
-              SimpleTextSection(">> " + examplesByCase["Malagasy"]["Genetif"]["two"][0]),
-              contentDetailExampleCases(examplesByCase["Deutch"]["Genetif"]["two"], examplesByCase["Malagasy"]["Genetif"]["two"]),
-        ],
-    );
-    }
-    return column;
   }
 
   Widget contentDetailExampleCases(List<String> examplesDeutch, List<String> examplesMalagasy){
@@ -194,57 +165,57 @@ class TabBarMianatraAlemana extends StatelessWidget {
   }
 }
 
-class TabBarHomeMenu  extends StatelessWidget {
+// class TabBarHomeMenu  extends StatelessWidget {
 
-  Widget build(BuildContext context){
-    return   Scaffold(
-      body: 
-          Column(
-            children: <Widget>[
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                  HomeMenuSizeBoxGrammar("Grammaire"),
-                  HomeMenuSizeBoxVocabularies("Vocabulaire"),
-              ],
-          ), 
-             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                  HomeMenuSizeBoxDialogues("Dialogues"),
-                  HomeMenuSizeBoxDialogues("Dialogues II"),
-              ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+//   Widget build(BuildContext context){
+//     return   Scaffold(
+//       body: 
+//           Column(
+//             children: <Widget>[
+//               Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: [
+//                   HomeMenuSizeBoxGrammar("Grammaire"),
+//                   HomeMenuSizeBoxVocabularies("Vocabulaire"),
+//               ],
+//           ), 
+//              Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: <Widget>[
+//                   HomeMenuSizeBoxDialogues("Dialogues"),
+//                   HomeMenuSizeBoxDialogues("Dialogues II"),
+//               ],
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class TabBarMainMenuGrammar  extends StatelessWidget {
+// class TabBarMainMenuGrammar  extends StatelessWidget {
 
-  Widget build(BuildContext context){
-    return   Scaffold(
-      body: 
-          Column(
-            children: <Widget>[
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                  MainMenuSizeBoxCases("Cas"),
-                  MainMenuSizeBoxConjugaison("Conjugaison"),
-              ],
-          ), 
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                MainMenuSizeBoxTexts("Textes"),
-          ],)
-        ],
-      ),
-    );
-  }
-}
+//   Widget build(BuildContext context){
+//     return   Scaffold(
+//       body: 
+//           Column(
+//             children: <Widget>[
+//               Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: [
+//                   MainMenuSizeBoxCases("Cas"),
+//                   MainMenuSizeBoxConjugaison("Conjugaison"),
+//               ],
+//           ), 
+//           Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: [
+//                 MainMenuSizeBoxTexts("Textes"),
+//           ],)
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class TabBarMainMenuVocabularies extends StatelessWidget {
   final List<String> textOne = ['Das Obst', 'Das Gemuse', 'Die Apfel', 'Der Druker', 'Die Kulie'];
@@ -283,25 +254,25 @@ class TabBarMainMenuVocabularies extends StatelessWidget {
   }
 }
 
-class TabBarSecondMenuCases extends StatelessWidget {  
+// class TabBarSecondMenuCases extends StatelessWidget {  
 
-  Widget build(BuildContext context){
-    return   Scaffold(
-      body: 
-          Column(
-            children: <Widget>[
-              Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                  SecondMenuSizeBoxCases("Nominatif", columnsTitle, contentLists[0], examplesByCases),
-                  SecondMenuSizeBoxCases("Accusatif", columnsTitle, contentLists[1], examplesByCases),
-              ],
-          ), 
-        ],
-      ),
-    );
-  }
-}
+//   Widget build(BuildContext context){
+//     return   Scaffold(
+//       body: 
+//           Column(
+//             children: <Widget>[
+//               Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceAround,
+//               children: [
+//                   SecondMenuSizeBoxCases("Nominatif", columnsTitle, contentLists[0], _contentMapss),
+//                   SecondMenuSizeBoxCases("Accusatif", columnsTitle, contentLists[1], _contentMapss),
+//               ],
+//           ), 
+//         ],
+//       ),
+//     );
+//   }
+// }
 
 class TextInputByCase extends StatefulWidget {
   final String _title;

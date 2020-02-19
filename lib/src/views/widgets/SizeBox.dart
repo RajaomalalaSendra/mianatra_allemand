@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mianatra_alemana/src/views/widgets/MainMenu.dart';
 import 'package:mianatra_alemana/src/views/widgets/RoutesAndTabs.dart';
-import 'package:mianatra_alemana/src/views/widgets/SecondMenu.dart';
 import 'package:mianatra_alemana/src/views/widgets/HomeMadeCard.dart';
 
-class HomeMenuSizeBoxGrammar extends StatelessWidget{
-    final String _title;
+// class HomeMenuSizeBoxGrammar extends StatelessWidget{
+//     final String _title;
 
-    HomeMenuSizeBoxGrammar(this._title);
+//     HomeMenuSizeBoxGrammar(this._title);
 
-    Widget build(BuildContext context){
-      return HomeMadeCardTwo("Learn The Grammar\n in German", _title, MainMenuGrammar(_title));
-    }
-}
+//     Widget build(BuildContext context){
+//       return HomeMadeCardTwo("Learn The Grammar\n in German", _title, MainMenuGrammar(_title));
+//     }
+// }
 
 class HomeMenuSizeBoxVocabularies extends StatelessWidget{
     final String _title;
@@ -34,16 +33,16 @@ class HomeMenuSizeBoxDialogues extends StatelessWidget{
     }
 }
 
-class MainMenuSizeBoxCases extends StatelessWidget{
-    final String _title;
+// class MainMenuSizeBoxCases extends StatelessWidget{
+//     final String _title;
 
-    MainMenuSizeBoxCases(this._title);
+//     MainMenuSizeBoxCases(this._title);
 
 
-    Widget build(BuildContext context){  
-      return HomeMadeCardTwo("Learn The Cases\n in German",_title, SecondMenuCases(_title));
-    }
-}
+//     Widget build(BuildContext context){  
+//       return HomeMadeCardTwo("Learn The Cases\n in German",_title, SecondMenuCases(_title));
+//     }
+// }
 
 class MainMenuSizeBoxConjugaison extends StatelessWidget {
   final String _title;
@@ -69,16 +68,16 @@ class MainMenuSizeBoxTexts extends StatelessWidget{
 
 class SecondMenuSizeBoxCases extends StatelessWidget{
     final String _title;
-    final List _columnsTitle;
-    final _contentLists;
-    final Map _examplesByCase;
+    final Map _contentMaps;
 
-    SecondMenuSizeBoxCases(this._title, this._columnsTitle, this._contentLists, this._examplesByCase);
+    SecondMenuSizeBoxCases(this._title, this._contentMaps);
 
 
     Widget build(BuildContext context){
-      TabBarMianatraAlemana tabBarMianatraAlemana = new TabBarMianatraAlemana(_title, _columnsTitle, _contentLists, _examplesByCase);
-      for (var i = 0; i < _columnsTitle.length; i++){
+      TabBarMianatraAlemana tabBarMianatraAlemana = new TabBarMianatraAlemana(_title, _contentMaps);
+      List columnsTitle = _contentMaps["columnsTitle"];
+      
+      for (var i = 0; i < columnsTitle.length; i++){
         return HomeMadeCardTwo("Apprendre le \n cas " + _title,_title, tabBarMianatraAlemana);
       }
       return Text("OK");

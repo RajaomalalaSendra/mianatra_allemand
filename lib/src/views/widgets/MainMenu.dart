@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:mianatra_alemana/src/views/widgets/RoutesAndTabs.dart';
 import 'package:mianatra_alemana/src/views/widgets/VocabulariesPage.dart';
 import 'package:mianatra_alemana/src/views/widgets/ContentByTitle.dart';
 import 'package:mianatra_alemana/src/data/dataCases.dart';
 
-class MainMenuGrammar extends StatelessWidget{
-  final String _title;
+// class MainMenuGrammar extends StatelessWidget{
+//   final String _title;
 
-  MainMenuGrammar(this._title);
+//   MainMenuGrammar(this._title);
 
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
       
-      appBar: AppBar(
-        title: Text(_title),
-      ),
-      body: TabBarMainMenuGrammar(),
-    );
-  }
-}
+//       appBar: AppBar(
+//         title: Text(_title),
+//       ),
+//       body: TabBarMainMenuGrammar(),
+//     );
+//   }
+// }
 
 class MainMenuVocabularies extends StatelessWidget{
   final String _title;
@@ -47,7 +46,7 @@ class MainMenu extends StatelessWidget{
                 appBar: this.appBarByTitle(),
                 body: TabBarView(
                           children: <Widget>[
-                            ContentGrammar(titlesCases, columnsTitle, contentLists, examplesByCases, titlesCases),
+                            ContentGrammar(contentMaps),
                             ContentVocabularies(),
                             ContentConjugaison(),
                             ContentDialogues(),

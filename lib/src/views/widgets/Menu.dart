@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 
 class CaseTabBarMenu extends StatelessWidget{
   final String _title;
-  final List _columnsTitle;
-  final  _contentLists;
-  final Map _examplesByCase;
-  final String routeName;
+  final Map _contentMaps;
 
-  CaseTabBarMenu(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
+  CaseTabBarMenu(this._title, this._contentMaps);
   
   @override
   Widget build(BuildContext context) {
-    ExtractArgumentsScreenMianatraAlemana mianatraAlemana = new ExtractArgumentsScreenMianatraAlemana(_title, _columnsTitle, _contentLists, _examplesByCase, routeName);
+    ExtractArgumentsScreenMianatraAlemana mianatraAlemana = new ExtractArgumentsScreenMianatraAlemana(_title, _contentMaps);
     
     return RaisedButton(
       child: Text(_title),
@@ -32,18 +29,15 @@ class CaseTabBarMenu extends StatelessWidget{
 
 // A Widget that extracts the necessary arguments from the ModalRoute.
 class ExtractArgumentsScreenMianatraAlemana extends StatelessWidget {
-  final String routeName;
+  final Map _contentMaps;
   final String _title;
-  final List _columnsTitle;
-  final _contentLists;
-  final Map _examplesByCase;
   
-  ExtractArgumentsScreenMianatraAlemana(this._title, this._columnsTitle, this._contentLists, this._examplesByCase, this.routeName);
+  ExtractArgumentsScreenMianatraAlemana(this._title, this._contentMaps);
   
   @override
   Widget build(BuildContext context) {
     // Extract the arguments from the current ModalRoute settings and cast
-    TabBarMianatraAlemana tabMianatraAlemana = new TabBarMianatraAlemana(_title, _columnsTitle, _contentLists, _examplesByCase);
+    TabBarMianatraAlemana tabMianatraAlemana = new TabBarMianatraAlemana(_title, _contentMaps);
 
     return Scaffold(
       body: Center(

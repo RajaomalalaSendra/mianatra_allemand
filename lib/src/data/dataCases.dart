@@ -1,29 +1,15 @@
-var columnsTitle = ["Masculin", "Feminin", "Neutre", "Pluriel"];
-var titlesCases = ["Nominatif", "Accusatif", "Datif", "Genetif"];
-
-var contentLists = [
-  {
-  "definit": ["der", "die", "das", "die"],
-  "indefinit": ["ein", "eine", "ein", "-"],
-  "negation": ["kein", "keine", "kein", "keine"]
-}, {
-  "definit": ["den", "die", "das", "die"],
-  "indefinit": ["einen", "eine", "ein", "-"],
-  "negation": ["keinen", "keine", "kein", "keine"]
-},{
-  "definit": ["den", "die", "das", "die"],
-  "indefinit": ["einen", "eine", "ein", "-"],
-  "negation": ["keinen", "keine", "kein", "keine"]
-},{
-  "definit": ["den", "die", "das", "die"],
-  "indefinit": ["einen", "eine", "ein", "-"],
-  "negation": ["keinen", "keine", "kein", "keine"]
-}  
-];
-
-var examplesByCases = {
-  "Deutch": {
+var contentMaps =
+{   "ColumnsTitle": ["Masculin", "Feminin", "Neutre", "Pluriel"],
+    "TitlesCases":  ["Nominatif", "Accusatif", "Datif", "Genetif"],
+    "imageUrl": ["assets/images/n.png", "assets/images/a.png", "assets/images/d.png", "assets/images/g.png"],
+    "subtitle": ["Subtitle for Nominatif", "Subtitle for Accusatif", "Subtitle for Datif", "Subtitle for Genetif"],
+    "Deutch": {
     "Nominatif": {
+      "contentLists": {
+        "definit": ["der", "die", "das", "die"],
+        "indefinit": ["ein", "eine", "ein", "-"],
+        "negation": ["kein", "keine", "kein", "keine"]
+      },
       "one": [
         "a) Ich bin die Bruder von Ndria.",
         "b) Meine Mutter ist hier.",
@@ -38,6 +24,11 @@ var examplesByCases = {
       ]
     }, 
     "Accusatif": {
+      "contentLists": {
+        "definit": ["den", "die", "das", "die"],
+        "indefinit": ["einen", "eine", "ein", "-"],
+        "negation": ["keinen", "keine", "kein", "keine"]
+      },
       "one": [
         "a) Ich habe keine Freunde.",
         "b) Ich bringe einen Slushell.",
@@ -52,6 +43,11 @@ var examplesByCases = {
       ]
     },
     "Datif": {
+        "contentLists": {
+          "definit": ["den", "die", "das", "die"],
+          "indefinit": ["einen", "eine", "ein", "-"],
+          "negation": ["keinen", "keine", "kein", "keine"]
+        },
         "one": [
           "a) Ich habe keine Freunde.",
           "b) Ich bringe einen Slushell.",
@@ -66,6 +62,11 @@ var examplesByCases = {
         ]
     },
     "Genetif": {
+      "contentLists": {
+        "definit": ["den", "die", "das", "die"],
+        "indefinit": ["einen", "eine", "ein", "-"],
+        "negation": ["keinen", "keine", "kein", "keine"]
+      },
       "one": [
           "a) Ich habe keine Freunde.",
           "b) Ich bringe einen Slushell.",
