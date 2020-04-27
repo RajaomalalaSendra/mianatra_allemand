@@ -2,7 +2,5 @@
 
 A Flutter project for creating of android apps for learning Germany.
 
-=======================================
-Fianarana Alemana 
-=======================================
+**Fianarana Alemana** 
 written in Flutter by  __love__.
