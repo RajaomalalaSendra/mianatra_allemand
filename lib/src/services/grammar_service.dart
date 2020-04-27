@@ -52,7 +52,7 @@ class GrammarService{
           }
           
           for(var i=0; i < contentDialogues.length; i++){
-            await db.insert("dialogue", {"photo_dial": contentDialogues[i]["photo_dial"], "title_dial": contentDialogues[i]["title_dial"], "text_dial_de": contentDialogues[i]["text_dial_de"], "text_dial_mg": contentDialogues[i]["text_dial_mg"], "expl_dial": contentDialogues[i]["expl_dial"], "audio_dial": contentDialogues[i]["audio_dial"], "video_dial": contentDialogues[i]["video_dial"]});
+            await db.insert("dialogue", {"photo_dial": contentDialogues[i]["photo_dial"], "title_dial": contentDialogues[i]["title_dial"], "text_dial_de": contentDialogues[i]["text_dial_de"], "text_dial_mg": contentDialogues[i]["text_dial_mg"], "expl_dial": contentDialogues[i]["expl_dial"], "audio_dial": contentDialogues[i]["audio_dial"], "video_dial": contentDialogues[i]["video_dial"], "pers_name": contentDialogues[i]["pers_name"]});
           }
 
         });

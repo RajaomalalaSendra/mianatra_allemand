@@ -95,12 +95,12 @@ class _DialoguesPageState extends State<DialoguesPage> {
                                                             onPressed: (){
                                                               _navigateToDialogue(dialogue);
                                                             },
-                                                          child: HomeMadeCardDialogue(image: Image(image: AssetImage(dialogue.photoDialogue), width: 140.0, height: 70.0), text: Text(dialogue.titleDialogue),),
+                                                          child: HomeMadeCardDialogue(image: Image(image: AssetImage(dialogue.photoDialogue), width: 180.0, height: 140.0), text: Text("dialogue ".toUpperCase() + (index + 1).toString()),),
                                                           ),
                                                           shape: RoundedRectangleBorder(
-                                                                borderRadius: BorderRadius.all(Radius.circular(0.0)),
+                                                                borderRadius: BorderRadius.all(Radius.circular(8.0)),
                                                           ),
-                                                          elevation: 7.0,
+                                                          elevation: 3.0,
                                                           clipBehavior: Clip.antiAliasWithSaveLayer,
                                                         );
                                                         }),

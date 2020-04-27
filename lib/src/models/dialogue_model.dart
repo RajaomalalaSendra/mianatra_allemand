@@ -7,6 +7,7 @@ class Dialogue {
   String explDialogue;
   String audioDialogue;
   String videoDialogue;
+  String persName;
 
   Dialogue({
       this.idDialogue,
@@ -16,7 +17,8 @@ class Dialogue {
       this.explDialogue,
       this.titleDialogue,
       this.audioDialogue,
-      this.videoDialogue
+      this.videoDialogue,
+      this.persName,
   });
 
   Map<String, dynamic> toJson() {
@@ -28,7 +30,8 @@ class Dialogue {
       "text_dial_mg": textDialogueMg,
       "expl_dial": explDialogue,
       "audio_dial": audioDialogue,
-      "video_dial": videoDialogue
+      "video_dial": videoDialogue,
+      "pers_name": persName,
     };
   }
 
@@ -42,7 +45,8 @@ class Dialogue {
           textDialogueMg: json["text_dial_mg"],
           explDialogue: json["expl_dial"],
           audioDialogue: json["audio_dial"],
-          videoDialogue: json["video_dial"]
+          videoDialogue: json["video_dial"],
+          persName: json["pers_name"],
   );
 
   // Implement toString to make it easier to see information about

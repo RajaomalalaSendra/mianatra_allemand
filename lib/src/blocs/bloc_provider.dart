@@ -37,4 +37,4 @@ class _BlocProviderState<T> extends State<BlocProvider<BlocBase>> {
     Widget build(BuildContext context) {
         return widget.child;
     }
-}
+} 
